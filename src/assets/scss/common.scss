@@ -39,6 +39,10 @@ ul, li {
   list-style-type: none;
 }
 
+.content-wrapper {
+  max-width: $desktopWidth;
+}
+
 section, .section {
   position: relative;
   padding: 40px 0;
