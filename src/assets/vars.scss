@@ -6,14 +6,20 @@ $phoneWidth              : 480px;
 $smPhoneWidth            : 320px;
 
 //Colors
-$darkshade-color         : #1f2041;
+$main-color              : #1f2041;
 $purple-color            : #bc9cff;
+$blue-color              : #8ba4f9;
 $green-color             : #6fcf97;
-$blue-color              : #66d2ea;
+$lightblue-color         : #66d2ea;
+
+//Gradients
+$main-gradient           : linear-gradient(180deg, $purple-color, $blue-color);
+$secondary-gradient      : linear-gradient(180deg, $green-color, $lightblue-color);
+
 
 //Fonts
 $mainFont                : 'Montserrat', Helvetica , Arial, sans-serif;
-$mainFontColor           : rgba($darkshade-color, 0.75);
+$mainFontColor           : rgba($main-color, 0.75);
 $mainFontSize            : 14px;
 $mainFontWeight          : normal;
 $mainLineHeight          : 24px;
