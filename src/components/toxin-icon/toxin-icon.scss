@@ -1,0 +1,19 @@
+.toxin-icon {
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+
+  &--small {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__container {
+    display: inline-block;
+	  position: relative;
+	  width: 100%;
+	  padding-bottom: 100%;
+	  vertical-align: middle;
+	  overflow: hidden;
+  }
+}

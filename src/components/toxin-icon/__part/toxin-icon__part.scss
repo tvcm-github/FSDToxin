@@ -1,0 +1,11 @@
+.toxin-icon__part {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: rgba(#1f2041, 0.25);
+
+  &--colorful path {
+    fill: url(#primary-gradient);
+  }
+}

@@ -1,0 +1,10 @@
+.toxin-icon__right-curve {
+  width: 25%;
+  height: 17%;
+  top: 37.4%;
+  left: 52%;
+
+  &--special path {
+    fill: url(#secondary-gradient);
+  }
+}

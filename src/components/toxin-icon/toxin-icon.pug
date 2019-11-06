@@ -1,0 +1,14 @@
+include ./__part/toxin-icon__part
+
+mixin toxin-icon(params)
+  - var classBase = 'toxin-icon'
+  - var classes = [classBase]
+
+  if (params.size)
+    - classes.push(classBase + '--' + params.size)
+
+  div(class=classes)
+    .toxin-icon__container
+      +toxin-icon__part({part: 'circle', isColorful: params.isColorful})
+      +toxin-icon__part({part: 'left-curve', isColorful: params.isColorful})
+      +toxin-icon__part({part: 'right-curve', isColorful: params.isColorful , isSpecial: true})
