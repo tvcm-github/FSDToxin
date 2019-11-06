@@ -1,6 +1,5 @@
 @import './assets/fonts/fonts.scss';
 @import './assets/vars.scss';
-@import './assets/mixins.scss';
 
 html {
   font-family: $mainFont;
@@ -10,4 +9,10 @@ html {
 	color: $mainFontColor;
 }
 
+body {
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
