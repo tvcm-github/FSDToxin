@@ -8,8 +8,9 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
     title #{title}
 
-  body(class=pageClass)
+  body(class='uikit-page')
     block header
+      .uikit-page__logo
+        +toxin-icon({})
     block main
-    block footer
 

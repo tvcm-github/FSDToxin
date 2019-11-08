@@ -1,2 +1,2 @@
-import '../../components/uikit-header/uikit-header'
+import '../../components/toxin-icon/toxin-icon'
 import './colors-and-type.scss'
