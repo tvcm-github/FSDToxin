@@ -1,0 +1,30 @@
+.color-block {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__tile {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    background-color: lightgray;
+  }
+
+  &__info {
+    font-family: 'Quicksand', 'OpenSans', Arial, sans-serif;
+    font-size: 19px;
+    line-height: 29px;
+    color: #1f2041;
+    margin-left: 40px;
+  }
+
+  &__title {
+    font-size: 19px;
+    margin: 0;
+  }
+
+  &__code {
+    text-transform: uppercase;
+    margin: 0;
+  }
+}

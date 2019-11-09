@@ -1,9 +1,15 @@
 extends ../../templates/uikit-page/uikit-page
 include ../../components/toxin-icon/toxin-icon
-
+include ../../components/color-block/color-block
 
 block variables
  - var title = 'Colors and type';
 
 block main
-  p Съешь еще этих Colors palette 123485
+  +color-block({title: 'Dark Shade', hexcode: '#1f2041'})
+  +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.75})
+  +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.5})
+  +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.25})
+  +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.05})
+  +color-block({title: 'Purple', hexcode: '#bc9cff'})
+  +color-block({title: 'Green', hexcode: '#6fcf97'})
