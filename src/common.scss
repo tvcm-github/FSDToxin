@@ -1,12 +1,12 @@
 @import './assets/fonts/fonts.scss';
-@import './assets/vars.scss';
+@import './assets/mixes.scss';
 
 html {
-  font-family: $mainFont;
-  font-size: $mainFontSize;
-  font-weight: $mainFontWeight;
-  line-height: $mainLineHeight;
-	color: $mainFontColor;
+  font-family: 'Montserrat', Helvetica , Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 24px;
+	color: rgba(#1f2041, 0.75);
 }
 
 body {
