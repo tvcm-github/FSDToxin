@@ -1,6 +1,7 @@
 extends ../../templates/uikit-page/uikit-page
 include ../../components/toxin-icon/toxin-icon
 include ../../components/color-block/color-block
+include ../../components/labeled-type/labeled-type
 
 block variables
  - var title = 'Colors and type';
@@ -13,3 +14,7 @@ block main
   +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.05})
   +color-block({title: 'Purple', hexcode: '#bc9cff'})
   +color-block({title: 'Green', hexcode: '#6fcf97'})
+  +labeled-type('H1', 'This one is the sub-section or widget title').title
+  +labeled-type('H2', 'Next one is the item title inside widgets').item-title
+  +labeled-type('H3', 'This is a label or CTA text').label-or-cta
+  +labeled-type('Body', 'This is the body text which is used for most of the design, like paragraphs, lists, etc.')

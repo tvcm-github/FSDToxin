@@ -4,22 +4,23 @@
   justify-content: flex-start;
 
   &__tile {
-    width: 70px;
-    height: 70px;
+    width: 7rem;
+    height: 7rem;
+    min-width: 7rem;
     border-radius: 6px;
     background-color: lightgray;
   }
 
   &__info {
     font-family: 'Quicksand', 'OpenSans', Arial, sans-serif;
-    font-size: 19px;
-    line-height: 29px;
+    font-size: 1.9rem;
+    line-height: 2.9rem;
     color: #1f2041;
-    margin-left: 40px;
+    margin-left: 4rem;
   }
 
   &__title {
-    font-size: 19px;
+    font-size: 1.9rem;
     font-weight: bold;
     margin: 0;
   }
