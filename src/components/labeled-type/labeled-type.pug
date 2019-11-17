@@ -1,0 +1,15 @@
+mixin labeled-type(label, content)
+  .labeled-type(class!=attributes.class)
+    p.labeled-type__label= label
+    case label
+      when 'H1'
+        h1.labeled-type__content!= content
+      when 'H2'
+        h2.labeled-type__content!= content
+      when 'H3'
+        h3.labeled-type__content!= content
+      default
+        p.labeled-type__content!= content
+
+
+

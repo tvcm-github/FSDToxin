@@ -1,0 +1,1 @@
+import './labeled-type.scss'
