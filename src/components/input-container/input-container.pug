@@ -1,0 +1,9 @@
+include ../text-field/text-field
+
+mixin input-container(params)
+  .input-container
+    if (params.label)
+      label.input-container__label(for=params.id)= params.label
+    if (params.tip)
+      span.input-container__tip= params.tip
+    +text-field({isInContainer: true, id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask})
