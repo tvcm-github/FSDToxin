@@ -1,7 +1,7 @@
 import Imask from 'imask'
 import './text-field.scss'
 
-var elements = document.getElementsByClassName('date-mask')
+var elements = document.getElementsByClassName('birthday-mask')
 
 Array.prototype.forEach.call(elements, function(element){
   var dateMask = IMask(element, {

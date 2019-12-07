@@ -13,4 +13,4 @@ mixin input-container(params)
         when 'subscription'
           +subscription-form({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask})
         default
-          +text-field({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, type: params.type})
+          +text-field({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, type: params.type, ro: params.ro, rq: params.rq})
