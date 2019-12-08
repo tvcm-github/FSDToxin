@@ -114,6 +114,10 @@ module.exports = {
       template: page,
       filename: `./uikit/${path.basename(page).replace(/\.pug/,'.html')}`
     })),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
     // new CopyWebpackPlugin([
     //   {from: `${PATHS.src}/img`, to: `${PATHS.assets}img` },
     // ]),
