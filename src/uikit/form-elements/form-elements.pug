@@ -1,12 +1,18 @@
 extends ../../templates/uikit-page/uikit-page
 include ../../components/input-container/input-container
+include ../../components/dates-block/dates-block
 
 block variables
  - var title = 'Form Elements';
 
 block main
-  +input-container({label: 'Text field', tip: 'Default', id: 'uikit-text-default', placeholder: 'Email'})
-  +input-container({label: 'Text field', tip: 'Hover / Focus', id: 'uikit-text-hovfocus', value: 'This is pretty awesome', focusedView: true})
-  +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask1', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
-  +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask2', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
-  +input-container({label: 'Subscription text field', id: 'uikit-subscription', placeholder: 'Email', function: 'subscription'})
+  .form-elements-container
+    .form-elements-container__column
+      +input-container({label: 'Text field', tip: 'Default', id: 'uikit-text-default', placeholder: 'Email'})
+      +input-container({label: 'Text field', tip: 'Hover / Focus', id: 'uikit-text-hovfocus', value: 'This is pretty awesome', focusedView: true})
+      +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask1', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
+      +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask2', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
+      +input-container({label: 'Subscription text field', id: 'uikit-subscription', placeholder: 'Email', inputType: 'subscription'})
+      +input-container({label: 'Date dropdown', id: 'uikit-date-range', placeholder: "19 авг - 23 авг", inputType: 'date-dropdown', dateType: 'range'})
+    .form-elements-container__column
+      +dates-block({uikitBlock: true, id: 'uikit-dates-block'})

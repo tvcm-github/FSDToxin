@@ -1,0 +1,9 @@
+.form-elements-container {
+  display: flex;
+  max-width: 114rem;
+  margin: 0 auto;
+
+  &__column {
+    width: 50%;
+  }
+}

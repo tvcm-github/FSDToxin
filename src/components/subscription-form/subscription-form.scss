@@ -2,17 +2,23 @@
   box-sizing: border-box;
   position: relative;
 
-  &__submit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &__submit-container {
+    display: block;
     position: absolute;
     right: 0;
     top: 0;
     height: 100%;
+  }
+
+  &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     width: calc(4.2rem + 2px);
     background: transparent;
     border: none;
+    outline: none;
     padding: 0;
     cursor: pointer;
 

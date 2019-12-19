@@ -1,5 +1,6 @@
 include ../text-field/text-field
 include ../subscription-form/subscription-form
+include ../dropdown/dropdown
 
 mixin input-container(params)
 
@@ -8,9 +9,11 @@ mixin input-container(params)
       label.input-container__label(for=params.id)= params.label
     if (params.tip)
       span.input-container__tip= params.tip
-    .input-container__input
-      case params.function
+    .input-container__input(class=inputClasses)
+      case params.inputType
         when 'subscription'
           +subscription-form({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask})
+        when 'date-dropdown'
+          +dropdown({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, dateType: params.dateType})
         default
           +text-field({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, type: params.type, ro: params.ro, rq: params.rq})

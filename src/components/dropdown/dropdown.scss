@@ -1,0 +1,22 @@
+.dropdown {
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+
+  &__icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: calc(4.2rem + 2px);
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__icon {
+    color: rgba(31, 32, 65, 0.5);
+  }
+}

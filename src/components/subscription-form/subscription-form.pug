@@ -3,5 +3,6 @@ include ../text-field/text-field
 mixin subscription-form(params)
   form.subscription-form
     +text-field({id: params.id, name: 'email', placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, type: 'email', rightSpace: true, rq: true})
-    button.subscription-form__submit(type='submit')
-      i.material-icons.subscription-form__icon= 'arrow_forward'
+    label.subscription-form__submit-container(for=params.id)
+      button.subscription-form__submit(type='submit')
+        i.material-icons.subscription-form__icon= 'arrow_forward'

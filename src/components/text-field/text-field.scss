@@ -2,7 +2,7 @@
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  padding: 1.3rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   border: 1px solid rgba(#1f2041, 0.25);
   border-radius: 4px;
   color: rgba(#1f2041, 0.75);
@@ -27,5 +27,16 @@
 
   &--right-space {
     padding-right: calc(4.2rem + 2px);
+  }
+
+  &--dropdown {
+    cursor: pointer;
+    &::placeholder {
+      color: rgba(31, 32, 65, 0.75);
+    }
+  }
+
+  &--no-radius {
+    border-radius: 4px 4px 0px 0px;
   }
 }

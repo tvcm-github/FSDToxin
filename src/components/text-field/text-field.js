@@ -1,4 +1,4 @@
-import Imask from 'imask'
+import IMask from 'imask'
 import './text-field.scss'
 
 var elements = document.getElementsByClassName('birthday-mask')
