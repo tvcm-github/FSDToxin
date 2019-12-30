@@ -44,9 +44,11 @@
             multipleDates: false, // Boolean or Number
             multipleDatesSeparator: ',',
             range: false,
+            twoInputsIdDiff: '',
 
             todayButton: false,
             clearButton: false,
+            applyButton: false,
 
             showEvent: 'focus',
             autoClose: false,
@@ -106,6 +108,23 @@
 
         this.opts = $.extend(true, {}, defaults, options, this.$el.data());
 
+        var inputs = [this.$el],
+            elParents = [];
+
+        if (this.$el.parent().nodeName == 'LABEL') {
+          elParents.push(this.$el.parent())
+        }
+
+        if (this.opts.twoInputsIdDiff) {
+          var diff = this.opts.twoInputsIdDiff.split(" "),
+              pairInputId = this.$el.attr('id').replace(diff[0], diff[1]);
+              this.$secondEl = $('#' + pairInputId);
+              inputs.push(this.$secondEl)
+              if (this.$secondEl.parent().nodeName == 'LABEL') {
+                elParents.push(this.$secondEl.parent())
+              }
+        }
+
         if ($body == undefined) {
             $body = $('body');
         }
@@ -146,9 +165,9 @@
         viewIndexes: ['days', 'months', 'years'],
 
         init: function () {
-            if (!containerBuilt && !this.opts.inline && this.elIsInput) {
-                this._buildDatepickersContainer();
-            }
+            // if (!containerBuilt && !this.opts.inline && this.elIsInput) {
+            //     this._buildDatepickersContainer();
+            // }
             this._buildBaseHtml();
             this._defineLocale(this.opts.language);
             this._syncWithMinMaxDates();
@@ -201,7 +220,7 @@
             this.$el.on('mouseup.adp', this._onMouseUpEl.bind(this));
             this.$el.on('blur.adp', this._onBlur.bind(this));
             this.$el.on('keyup.adp', this._onKeyUpGeneral.bind(this));
-            $(window).on('resize.adp', this._onResize.bind(this));
+            // $(window).on('resize.adp', this._onResize.bind(this));
             $('body').on('mouseup.adp', this._onMouseUpBody.bind(this));
         },
 
@@ -268,13 +287,18 @@
 
         _buildBaseHtml: function () {
             var $appendTarget,
-                $inline = $('<div class="datepicker-inline">');
+                $inline = $('<div class="datepicker-inline">'),
+                $element = this.$el.parent();
+
+            if (!$element.nodeName == 'LABEL') {
+              $element = this.$el;
+            }
 
             if(this.el.nodeName == 'INPUT') {
                 if (!this.opts.inline) {
-                    $appendTarget = $datepickersContainer;
+                    $appendTarget = $element.parent()
                 } else {
-                    $appendTarget = $inline.insertAfter(this.$el)
+                    $appendTarget = $inline.insertAfter($element)
                 }
             } else {
                 $appendTarget = $inline.appendTo(this.$el)
@@ -409,7 +433,7 @@
                 case /MM/.test(result):
                     result = replacer(result, boundary('MM'), this.loc.months[d.month]);
                 case /M/.test(result):
-                    result = replacer(result, boundary('M'), locale.monthsShort[d.month]);
+                    result = replacer(result, boundary('M'), locale.monthsShort[d.month].toLowerCase());
                 case /ii/.test(result):
                     result = replacer(result, boundary('ii'), d.fullMinutes);
                 case /i/.test(result):
@@ -530,7 +554,10 @@
                 _this.selectedDates = [date];
             }
 
-            _this._setInputValue();
+            if (!_this.opts.applyButton) {
+              _this._setInputValue();
+            }
+
 
             if (opts.onSelect) {
                 _this._triggerOnChange();
@@ -592,11 +619,26 @@
             this.selectedDates = [];
             this.minRange = '';
             this.maxRange = '';
+            this.date = new Date();
             this.views[this.currentView]._render();
+            this.view = this.opts.minView
             this._setInputValue();
             if (this.opts.onSelect) {
                 this._triggerOnChange()
             }
+        },
+
+        apply: function () {
+          if (this.opts.range){
+            if (this.selectedDates.length > 1)
+              this._setInputValue();
+          }
+          else if (this.selectedDates.length > 0) {
+            this._setInputValue();
+          }
+
+          this.$el.focus()
+          this.hide()
         },
 
         /**
@@ -623,9 +665,9 @@
 
             if (this.elIsInput && !this.opts.inline) {
                 this._setPositionClasses(this.opts.position);
-                if (this.visible) {
-                    this.setPosition(this.opts.position)
-                }
+                // if (this.visible) {
+                //     this.setPosition(this.opts.position)
+                // }
             }
 
             if (this.opts.classes) {
@@ -682,8 +724,8 @@
                 format = _this.loc.dateFormat,
                 altFormat = opts.altFieldDateFormat,
                 value = _this.selectedDates.map(function (date) {
-                    return _this.formatDate(format, date)
-                }),
+                  return _this.formatDate(format, date)
+                  }),
                 altValues;
 
             if (opts.altField && _this.$altField.length) {
@@ -694,9 +736,16 @@
                 this.$altField.val(altValues);
             }
 
-            value = value.join(this.opts.multipleDatesSeparator);
+            if (!opts.twoInputsIdDiff) {
+              value = value.join(this.opts.multipleDatesSeparator);
+              this.$el.val(value)
+            }
+            else if (opts.range || opts.multipleDates == 2) {
+              this.$el.val(value[0]);
+              this.$secondEl.val(value[1]);
+            }
 
-            this.$el.val(value)
+
         },
 
         /**
@@ -773,7 +822,7 @@
                     left = dims.left + dims.width + offset;
                     break;
                 case 'bottom':
-                    top = dims.top + dims.height + offset;
+                    top = dims.height + offset;
                     break;
                 case 'left':
                     left = dims.left - selfDims.width - offset;
@@ -791,7 +840,7 @@
                     top = dims.top + dims.height - selfDims.height;
                     break;
                 case 'left':
-                    left = dims.left;
+                    left = 0;
                     break;
                 case 'center':
                     if (/left|right/.test(main)) {
@@ -801,23 +850,25 @@
                     }
             }
 
-            this.$datepicker
-                .css({
-                    left: left,
-                    top: top
-                })
+            // this.$datepicker
+            //     .css({
+            //         left: left,
+            //         top: top
+            //     })
         },
 
         show: function () {
             var onShow = this.opts.onShow;
 
-            this.setPosition(this.opts.position);
+            // this.setPosition(this.opts.position);
             this.$datepicker.addClass('active');
             this.visible = true;
 
             if (onShow) {
                 this._bindVisionEvents(onShow)
             }
+
+            console.log('showed')
         },
 
         hide: function () {
@@ -825,20 +876,22 @@
 
             this.$datepicker
                 .removeClass('active')
-                .css({
-                    left: '-100000px'
-                });
+                // .css({
+                //     left: '-100000px'
+                // });
 
             this.focused = '';
             this.keys = [];
 
             this.inFocus = false;
             this.visible = false;
-            this.$el.blur();
+            // this.$el.blur();
 
             if (onHide) {
                 this._bindVisionEvents(onHide)
             }
+
+            console.log('hided')
         },
 
         down: function (date) {
@@ -1119,6 +1172,9 @@
             if (!this.visible) {
                 this.show();
             }
+            else {
+              this.hide()
+            }
         },
 
         _onBlur: function () {
@@ -1134,29 +1190,31 @@
         _onMouseUpDatepicker: function (e) {
             this.inFocus = false;
             e.originalEvent.inFocus = true;
-            if (!e.originalEvent.timepickerFocus) this.$el.focus();
+            // if (!e.originalEvent.timepickerFocus) this.$el.focus();
         },
 
         _onKeyUpGeneral: function (e) {
             var val = this.$el.val();
 
-            if (!val) {
-                this.clear();
-            }
+            // if (!val) {
+            //     this.clear();
+            // }
         },
 
-        _onResize: function () {
-            if (this.visible) {
-                this.setPosition();
-            }
-        },
+        // _onResize: function () {
+        //     if (this.visible) {
+        //         this.setPosition();
+        //     }
+        // },
 
         _onMouseUpBody: function (e) {
             if (e.originalEvent.inFocus) return;
 
             if (this.visible && !this.inFocus) {
                 this.hide();
+                console.log('hided by body')
             }
+            console.log('body')
         },
 
         _onMouseUpEl: function (e) {
@@ -1316,9 +1374,9 @@
             if (this.inited && !this.silent) {
                 this.views[this.view]._render();
                 this.nav._render();
-                if (this.visible && this.elIsInput) {
-                    this.setPosition();
-                }
+                // if (this.visible && this.elIsInput) {
+                //     this.setPosition();
+                // }
             }
             return val;
         },
@@ -1351,7 +1409,7 @@
                 if (this.opts.onChangeView) {
                     this.opts.onChangeView(val)
                 }
-                if (this.elIsInput && this.visible) this.setPosition();
+                // if (this.elIsInput && this.visible) this.setPosition();
             }
 
             return val
@@ -1480,6 +1538,7 @@
             monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
             today: 'Сегодня',
             clear: 'Очистить',
+            apply: 'Применить',
             dateFormat: 'dd.mm.yyyy',
             timeFormat: 'hh:ii',
             firstDay: 1
@@ -1810,7 +1869,7 @@
         '<div class="datepicker--nav-title">#{title}</div>' +
         '<div class="datepicker--nav-action" data-action="next">#{nextHtml}</div>',
         buttonsContainerTemplate = '<div class="datepicker--buttons"></div>',
-        button = '<span class="datepicker--button" data-action="#{action}">#{label}</span>',
+        button = '<span class="datepicker--button datepicker--button--#{action}" data-action="#{action}">#{label}</span>',
         datepicker = $.fn.datepicker,
         dp = datepicker.Constructor;
 
@@ -1848,6 +1907,9 @@
             }
             if (this.opts.clearButton) {
                 this._addButton('clear')
+            }
+            if (this.opts.applyButton) {
+                this._addButton('apply')
             }
         },
 
@@ -1943,8 +2005,11 @@
             if (this.d.view == 'days') {
                 return this.d.view = 'months'
             }
+            else {
+                return this.d.view = 'days'
+            }
 
-            this.d.view = 'years';
+            // this.d.view = 'years';
         }
     }
 

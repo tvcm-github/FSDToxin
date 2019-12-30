@@ -5,6 +5,10 @@
   max-width: 32rem;
   box-sizing: border-box;
 
+  &--relative {
+    position: relative;
+  }
+
   &__label,
   &__tip {
     display: block;
@@ -22,16 +26,12 @@
   }
 
   &__tip {
-    // position: absolute;
-    // top: 0;
-    // right: 0;
     font-weight: normal;
     color: rgba(#1f2041, 0.5);
     text-align: right;
   }
 
   &__input {
-    // position: relative;
     width: 100%;
     margin-top: 0.5rem;
     box-sizing: border-box;

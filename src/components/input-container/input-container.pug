@@ -3,13 +3,15 @@ include ../subscription-form/subscription-form
 include ../dropdown/dropdown
 
 mixin input-container(params)
-
-  .input-container
+  - var classes = []
+  if (params.relative)
+    - classes.push('input-container--relative')
+  .input-container(class=classes)
     if (params.label)
       label.input-container__label(for=params.id)= params.label
     if (params.tip)
       span.input-container__tip= params.tip
-    .input-container__input(class=inputClasses)
+    .input-container__input
       case params.inputType
         when 'subscription'
           +subscription-form({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask})

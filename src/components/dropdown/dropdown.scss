@@ -1,22 +1,23 @@
 .dropdown {
   box-sizing: border-box;
+  display: block;
   position: relative;
   cursor: pointer;
 
-  &__icon-container {
+  &::after {
+    position: absolute;
+    font-family: "Material Icons";
+    font-size: 24px;
+    color: rgba(31, 32, 65, 0.5);
+    content: '\e5cf';
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
     right: 0;
     top: 0;
     height: 100%;
     width: calc(4.2rem + 2px);
     padding: 0;
-    cursor: pointer;
   }
 
-  &__icon {
-    color: rgba(31, 32, 65, 0.5);
-  }
 }

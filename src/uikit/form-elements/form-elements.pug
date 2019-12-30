@@ -13,6 +13,10 @@ block main
       +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask1', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
       +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask2', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
       +input-container({label: 'Subscription text field', id: 'uikit-subscription', placeholder: 'Email', inputType: 'subscription'})
-      +input-container({label: 'Date dropdown', id: 'uikit-date-range', placeholder: "19 авг - 23 авг", inputType: 'date-dropdown', dateType: 'range'})
+      +input-container({label: 'Date dropdown', id: 'uikit-date-range', placeholder: "19 авг - 23 авг", relative: true, inputType: 'date-dropdown', dateType: 'range'})
+    .form-elements-container__column
+      +input-container({label: 'Date dropdown', id: 'uikit-date-range-test', placeholder: "19 авг - 23 авг", relative: true, inputType: 'date-dropdown', dateType: 'range'})
     .form-elements-container__column
       +dates-block({uikitBlock: true, id: 'uikit-dates-block'})
+    .form-elements-container__column
+      +dates-block({uikitBlock: true, id: 'uikit-dates-block-test'})
