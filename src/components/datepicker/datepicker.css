@@ -1,8 +1,11 @@
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
 :root {
   --dp-border: 1px;
   --dp-padding: calc(0.059375*(100% + 2 * var(--dp-border)));
 }
 
+=======
+>>>>>>> Datepicker block finished:src/datepicker.css
 
 /* -------------------------------------------------
     Datepicker cells
@@ -32,7 +35,10 @@
   .datepicker--cell.-focus- {
     background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%); }
   .datepicker--cell.-current- {
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
     font-weight: 600;
+=======
+>>>>>>> Datepicker block finished:src/datepicker.css
     background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
     color: #ffffff; }
     .datepicker--cell.-current-.-focus- {
@@ -78,7 +84,10 @@
     border-radius: 50%; }
   .datepicker--cell.-selected- {
     color: #ffffff;
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
     font-weight: 600;
+=======
+>>>>>>> Datepicker block finished:src/datepicker.css
     border: none;
     background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%); }
     .datepicker--cell.-selected-.-current- {
@@ -99,7 +108,11 @@
 
 .datepicker--day-name {
   color: #bc9cff;
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
   font-weight: 600;
+=======
+  font-weight: bold;
+>>>>>>> Datepicker block finished:src/datepicker.css
   text-align: center;
 }
 
@@ -176,9 +189,15 @@
 
 .datepicker {
   background: #fff;
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
   border: var(--dp-border) solid rgba(31, 32, 65, 0.25);
   box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
   border-radius: 0.4rem;
+=======
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
+  border-radius: 4px;
+>>>>>>> Datepicker block finished:src/datepicker.css
   box-sizing: border-box;
   font-family: 'Montserrat', Helvetica , Arial, sans-serif;
   font-size: 1.2rem;
@@ -235,7 +254,11 @@
 
 .datepicker--content {
   box-sizing: content-box;
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
   padding: 0 var(--dp-padding); }
+=======
+  padding: 0 2rem; }
+>>>>>>> Datepicker block finished:src/datepicker.css
   .-only-timepicker- .datepicker--content {
     display: none; }
 
@@ -292,10 +315,14 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   min-height: 2.4rem;
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
   padding: var(--dp-padding);
   padding-bottom: calc(var(--dp-padding) + 1px);
 }
 
+=======
+  padding: 2rem; }
+>>>>>>> Datepicker block finished:src/datepicker.css
   .-only-timepicker- .datepicker--nav {
     display: none; }
 
@@ -314,7 +341,11 @@
 
 .datepicker--nav-action {
   width: 2.4rem;
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
   border-radius: 0.4rem;
+=======
+  border-radius: 4px;
+>>>>>>> Datepicker block finished:src/datepicker.css
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -331,8 +362,12 @@
   line-height: 2.4rem;
   font-weight: bold;
   color: rgb(31, 32, 65);
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
   border-radius: 0.4rem;
   user-select: none;}
+=======
+  border-radius: 4px; }
+>>>>>>> Datepicker block finished:src/datepicker.css
   .datepicker--nav-title.-disabled- {
     cursor: default;
     background: none; }
@@ -342,6 +377,7 @@
   display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD:src/components/datepicker/datepicker.css
   padding: var(--dp-padding);
   padding-top: calc(var(--dp-padding) + 1px);
 }
@@ -355,6 +391,17 @@
 .datepicker--button--apply {
   color: #bc9cff;
   font-weight: 600;
+=======
+  padding: 2rem; }
+
+.datepicker--button {
+  cursor: pointer;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;}
+.datepicker--button--apply {
+  color: #bc9cff;
+>>>>>>> Datepicker block finished:src/datepicker.css
 }
 
 /* -------------------------------------------------

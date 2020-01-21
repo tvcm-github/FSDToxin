@@ -112,6 +112,7 @@ import './datepicker.css';
         this.target;
         this.elAreaInFocus = false;
 
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
         if (this.opts.applyButton || this.opts.twoInputsIdDiff) {
           this.appliedDates = [];
         }
@@ -123,6 +124,13 @@ import './datepicker.css';
             this.inputs.push(this.$secondEl);
             this.targetInputIndex;
             this.selectedDateInputIndex;
+=======
+        if (this.opts.twoInputsIdDiff) {
+          var diff = this.opts.twoInputsIdDiff.split(" "),
+              pairInputId = this.$el.attr('id').replace(diff[0], diff[1]);
+              this.$secondEl = $('#' + pairInputId);
+              this.inputs.push(this.$secondEl)
+>>>>>>> Datepicker block finished:src/datepicker.js
         }
 
         this.isSameInput = function () {
@@ -241,8 +249,11 @@ import './datepicker.css';
             this.$datepicker.on('mouseenter', '.datepicker--cell', this._onMouseEnterCell.bind(this));
             this.$datepicker.on('mouseleave', '.datepicker--cell', this._onMouseLeaveCell.bind(this));
             this.$datepicker.on('mouseleave', '.datepicker--cells', this._onMouseLeaveCellsArea.bind(this));
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
             this.$datepicker.on('mouseenter',  this._onMouseEnterElementArea.bind(this));
             this.$datepicker.on('mouseleave',  this._onMouseLeaveElementArea.bind(this));
+=======
+>>>>>>> Datepicker block finished:src/datepicker.js
 
             this.inited = true;
         },
@@ -259,8 +270,17 @@ import './datepicker.css';
             element.on('mouseup.adp', _this._onMouseUpEl.bind(_this));
             element.on('blur.adp', _this._onBlur.bind(_this));
             element.on('keyup.adp', _this._onKeyUpGeneral.bind(_this));
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
             element.on('mouseenter', _this._onMouseEnterElementArea.bind(_this));
             element.on('mouseleave', _this._onMouseLeaveElementArea.bind(_this));
+=======
+            if (element.parent()[0].nodeName == 'LABEL') {
+              element.parent().on('mouseup', function(e) {
+                e.originalEvent.inFocus = true;
+                element.off('blur');
+              })
+            }
+>>>>>>> Datepicker block finished:src/datepicker.js
           });
           // $(window).on('resize.adp', this._onResize.bind(this));
           $('body').on('mouseup.adp', this._onMouseUpBody.bind(this));
@@ -579,10 +599,21 @@ import './datepicker.css';
                 }
             } else if (opts.range) {
                 if (len == 2) {
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
                     if (!(_this.dateOutOfBounds(date))) {
                         _this.selectedDates[_this.targetInputIndex] = date;
                         _this.maxRange = _this.selectedDates[1];
                         _this.minRange = _this.selectedDates[0];
+=======
+                    _this.selectedDates = [date];
+                    // _this.minRange = date;
+                    _this.maxRange = '';
+                    _this.minRange = '';
+                } else if (len == 1) {
+                    _this.selectedDates.push(date);
+                    if (!_this.maxRange){
+                        _this.maxRange = date;
+>>>>>>> Datepicker block finished:src/datepicker.js
                     } else {
                         _this.selectedDates = [date];
                         _this.selectedDateInputIndex = _this.targetInputIndex;
@@ -610,9 +641,13 @@ import './datepicker.css';
 
                 } else {
                     _this.selectedDates = [date];
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
                     if (opts.twoInputsIdDiff) {
                         _this.selectedDateInputIndex = _this.targetInputIndex;
                     }
+=======
+                    // _this.minRange = date;
+>>>>>>> Datepicker block finished:src/datepicker.js
                 }
             }
 
@@ -655,7 +690,11 @@ import './datepicker.css';
                     }
 
                     _this.views[_this.currentView]._render();
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
                     if (!(_this.opts.applyButton || _this.opts.twoInputsIdDiff)) {
+=======
+                    if (!_this.opts.applyButton) {
+>>>>>>> Datepicker block finished:src/datepicker.js
                       _this._setInputValue();
                     }
 
@@ -950,6 +989,7 @@ import './datepicker.css';
 
             this.inFocus = '';
             this.visible = false;
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
             this.inputs.map(input => input.blur());
             if (this.opts.applyButton || this.opts.twoInputsIdDiff) {
               this.selectedDates = dates;
@@ -962,6 +1002,9 @@ import './datepicker.css';
                 this.maxRange = this.appliedDates[1];
               }
             }
+=======
+            this.inputs.map(input => input.blur())
+>>>>>>> Datepicker block finished:src/datepicker.js
 
             if (onHide) {
                 this._bindVisionEvents(onHide)
@@ -1371,6 +1414,7 @@ import './datepicker.css';
             this.silent = false;
 
             if (this.opts.range && this.selectedDates.length == 1) {
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
                 if (!(this.isSameInput())) {
                     if (datepicker.isSame(this.selectedDates[0], this._focused, this.cellType)) {
                         this.minRange ='';
@@ -1385,6 +1429,17 @@ import './datepicker.css';
                     }
                 } else {
                     this.minRange = '';
+=======
+                if (datepicker.isSame(this.selectedDates[0], this._focused), this.cellType) {
+                    this.minRange ='';
+                    this.maxRange ='';
+                }
+                if (datepicker.less(this.selectedDates[0], this._focused, this.cellType)) {
+                    this.maxRange = this.selectedDates[0];
+                    this.minRange = '';
+                } else if (datepicker.bigger(this.selectedDates[0], this._focused, this.cellType)) {
+                    this.minRange = this.selectedDates[0];
+>>>>>>> Datepicker block finished:src/datepicker.js
                     this.maxRange = '';
                 }
                 this.views[this.currentView]._update();
@@ -1405,7 +1460,10 @@ import './datepicker.css';
             if (this.selectedDates.length == 1) {
                 this.minRange ='';
                 this.maxRange = '';
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
                 this.views[this.currentView]._update();
+=======
+>>>>>>> Datepicker block finished:src/datepicker.js
             }
         },
 
@@ -1450,10 +1508,13 @@ import './datepicker.css';
             }
             this._focused = val;
             if (this.opts.range && this.selectedDates.length == 1) {
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
                 if (datepicker.isSame(this.selectedDates[0], this._focused), this.cellType) {
                     this.minRange ='';
                     this.maxRange ='';
                 }
+=======
+>>>>>>> Datepicker block finished:src/datepicker.js
                 if (datepicker.less(this.selectedDates[0], this._focused, this.cellType)) {
                     this.maxRange = this.selectedDates[0];
                     this.minRange = '';
@@ -1805,12 +1866,16 @@ import './datepicker.css';
                     if (dp.bigger(minRange, date, type) && dp.less(maxRange, date, type)) {
                      classes += ' -in-range-'
                     }
+<<<<<<< HEAD:src/components/datepicker/datepicker.js
                     // if (dp.isSame(minRange, date, type) && !dp.isSame(minRange, maxRange, type)) classes += ' -range-from-';
+=======
+                    if (dp.isSame(minRange, date, type) && !dp.isSame(minRange, maxRange, type)) classes += ' -range-from-';
+>>>>>>> Datepicker block finished:src/datepicker.js
                 }
             }
 
 
-            if (dp.isSame(currentDate, date, type)) classes += ' -current-';
+            if (dp.isSame(currentDate, date, type) && !dp.isSame(currentDate, parent.focused, type)) classes += ' -current-';
             if (parent.focused && dp.isSame(date, parent.focused, type)) classes += ' -focus-';
             if (parent._isSelected(date, type)) classes += ' -selected-';
             if (!parent._isInRange(date, type) || render.disabled) classes += ' -disabled-';
