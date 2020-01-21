@@ -4,8 +4,9 @@ include ../dropdown/dropdown
 
 mixin input-container(params)
   - var classes = []
-  if (params.relative)
+  if (params.inputType == 'range-date')
     - classes.push('input-container--relative')
+
   .input-container(class=classes)
     if (params.label)
       label.input-container__label(for=params.id)= params.label
@@ -15,7 +16,9 @@ mixin input-container(params)
       case params.inputType
         when 'subscription'
           +subscription-form({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask})
-        when 'date-dropdown'
-          +dropdown({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, dateType: params.dateType})
+        when 'range-date'
+        when 'separated-date'
+        when 'separated-date-pair'
+          +dropdown({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, dropdownType: params.inputType, title: 'Выберите даты'})
         default
           +text-field({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, type: params.type, ro: params.ro, rq: params.rq})

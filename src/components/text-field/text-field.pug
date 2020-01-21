@@ -12,11 +12,11 @@ mixin text-field(params)
     - classes.push(classesBase + '--focused')
   if (params.dropdown)
     - classes.push(classesBase + '--dropdown')
-  case params.dateType
-    when 'range'
-      - classes.push(classesBase + '--range-date')
-    when 'separated'
-      - classes.push(classesBase + '--separated-date')
+    case params.dropdown
+      when 'range-date'
+        - classes.push(classesBase + '--range-date')
+      when 'separated-date'
+        - classes.push(classesBase + '--separated-date')
   if(params.mask)
     - classes.push(params.mask)
   case params.mask

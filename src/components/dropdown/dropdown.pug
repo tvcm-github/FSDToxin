@@ -1,5 +1,5 @@
 include ../text-field/text-field
 
 mixin dropdown(params)
-  label.dropdown(title="Выберите даты")
-    +text-field({id: params.id, value: params.value, placeholder: params.placeholder, focusedView: params.focusedView, rightSpace: true, ro: true, rq: true, autocomplete: "off", dropdown: true, dateType: params.dateType})
+  label.dropdown(title=params.title)
+    +text-field({id: params.id, value: params.value, placeholder: params.placeholder, focusedView: params.focusedView, rightSpace: true, ro: true, rq: true, autocomplete: "off", dropdown: params.dropdownType})
