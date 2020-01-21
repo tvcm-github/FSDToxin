@@ -18,6 +18,12 @@
     height: 100%;
     width: calc(4.2rem + 2px);
     padding: 0;
+    transition-duration: 0.3s;
   }
 
+  &--active {
+    &::after {
+      color: rgba(31, 32, 65, 0.75);
+    }
+  }
 }

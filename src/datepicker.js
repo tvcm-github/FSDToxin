@@ -55,10 +55,10 @@
 
             // navigation
             monthsField: 'monthsShort',
-            prevHtml: '<svg><path d="M 17,12 l -5,5 l 5,5"></path></svg>',
-            nextHtml: '<svg><path d="M 14,12 l 5,5 l -5,5"></path></svg>',
+            prevHtml: '<i class="material-icons">arrow_back</i>',
+            nextHtml: '<i class="material-icons">arrow_forward</i>',
             navTitles: {
-                days: 'MM, <i>yyyy</i>',
+                days: 'MM yyyy',
                 months: 'yyyy',
                 years: 'yyyy1 - yyyy2'
             },
@@ -90,6 +90,7 @@
             'ctrlUp': [17, 38],
             'ctrlLeft': [17, 37],
             'ctrlDown': [17, 40],
+            'ctrlEnter': [13, 17],
             'shiftRight': [16, 39],
             'shiftUp': [16, 38],
             'shiftLeft': [16, 37],
@@ -105,24 +106,14 @@
     var Datepicker  = function (el, options) {
         this.el = el;
         this.$el = $(el);
-
+        this.inputs = [this.$el];
         this.opts = $.extend(true, {}, defaults, options, this.$el.data());
-
-        var inputs = [this.$el],
-            elParents = [];
-
-        if (this.$el.parent().nodeName == 'LABEL') {
-          elParents.push(this.$el.parent())
-        }
 
         if (this.opts.twoInputsIdDiff) {
           var diff = this.opts.twoInputsIdDiff.split(" "),
               pairInputId = this.$el.attr('id').replace(diff[0], diff[1]);
               this.$secondEl = $('#' + pairInputId);
-              inputs.push(this.$secondEl)
-              if (this.$secondEl.parent().nodeName == 'LABEL') {
-                elParents.push(this.$secondEl.parent())
-              }
+              this.inputs.push(this.$secondEl)
         }
 
         if ($body == undefined) {
@@ -162,7 +153,7 @@
 
     datepicker.prototype = {
         VERSION: VERSION,
-        viewIndexes: ['days', 'months', 'years'],
+        viewIndexes: ['days', 'months'], //years
 
         init: function () {
             // if (!containerBuilt && !this.opts.inline && this.elIsInput) {
@@ -206,6 +197,7 @@
             this.$el.on('clickCell.adp', this._onClickCell.bind(this));
             this.$datepicker.on('mouseenter', '.datepicker--cell', this._onMouseEnterCell.bind(this));
             this.$datepicker.on('mouseleave', '.datepicker--cell', this._onMouseLeaveCell.bind(this));
+            this.$datepicker.on('mouseleave', '.datepicker--cells', this._onMouseLeaveCellsArea.bind(this));
 
             this.inited = true;
         },
@@ -216,22 +208,37 @@
         },
 
         _bindEvents : function () {
-            this.$el.on(this.opts.showEvent + '.adp', this._onShowEvent.bind(this));
-            this.$el.on('mouseup.adp', this._onMouseUpEl.bind(this));
-            this.$el.on('blur.adp', this._onBlur.bind(this));
-            this.$el.on('keyup.adp', this._onKeyUpGeneral.bind(this));
-            // $(window).on('resize.adp', this._onResize.bind(this));
-            $('body').on('mouseup.adp', this._onMouseUpBody.bind(this));
+          var _this = this;
+          this.inputs.map(function(element) {
+            element.on(_this.opts.showEvent + '.adp', _this._onShowEvent.bind(_this));
+            element.on('mouseup.adp', _this._onMouseUpEl.bind(_this));
+            element.on('blur.adp', _this._onBlur.bind(_this));
+            element.on('keyup.adp', _this._onKeyUpGeneral.bind(_this));
+            if (element.parent()[0].nodeName == 'LABEL') {
+              element.parent().on('mouseup', function(e) {
+                e.originalEvent.inFocus = true;
+                element.off('blur');
+              })
+            }
+          });
+          // $(window).on('resize.adp', this._onResize.bind(this));
+          $('body').on('mouseup.adp', this._onMouseUpBody.bind(this));
         },
 
         _bindKeyboardEvents: function () {
-            this.$el.on('keydown.adp', this._onKeyDown.bind(this));
-            this.$el.on('keyup.adp', this._onKeyUp.bind(this));
-            this.$el.on('hotKey.adp', this._onHotKey.bind(this));
+          var _this = this;
+          this.inputs.map(function(element) {
+            element.on('keydown.adp', _this._onKeyDown.bind(_this));
+            element.on('keyup.adp', _this._onKeyUp.bind(_this));
+            element.on('hotKey.adp', _this._onHotKey.bind(_this));
+          });
         },
 
         _bindTimepickerEvents: function () {
-            this.$el.on('timeChange.adp', this._onTimeChange.bind(this));
+          var _this = this;
+          this.inputs.map(function(element) {
+            element.on('timeChange.adp', _this._onTimeChange.bind(_this));
+          })
         },
 
         isWeekend: function (day) {
@@ -530,8 +537,9 @@
             } else if (opts.range) {
                 if (len == 2) {
                     _this.selectedDates = [date];
-                    _this.minRange = date;
+                    // _this.minRange = date;
                     _this.maxRange = '';
+                    _this.minRange = '';
                 } else if (len == 1) {
                     _this.selectedDates.push(date);
                     if (!_this.maxRange){
@@ -548,7 +556,7 @@
 
                 } else {
                     _this.selectedDates = [date];
-                    _this.minRange = date;
+                    // _this.minRange = date;
                 }
             } else {
                 _this.selectedDates = [date];
@@ -593,7 +601,9 @@
                     }
 
                     _this.views[_this.currentView]._render();
-                    _this._setInputValue();
+                    if (!_this.opts.applyButton) {
+                      _this._setInputValue();
+                    }
 
                     if (_this.opts.onSelect) {
                         _this._triggerOnChange();
@@ -867,8 +877,6 @@
             if (onShow) {
                 this._bindVisionEvents(onShow)
             }
-
-            console.log('showed')
         },
 
         hide: function () {
@@ -880,18 +888,16 @@
                 //     left: '-100000px'
                 // });
 
-            this.focused = '';
+            this.focused = false;
             this.keys = [];
 
-            this.inFocus = false;
+            this.inFocus = '';
             this.visible = false;
-            // this.$el.blur();
+            this.inputs.map(input => input.blur())
 
             if (onHide) {
                 this._bindVisionEvents(onHide)
             }
-
-            console.log('hided')
         },
 
         down: function (date) {
@@ -912,7 +918,7 @@
             date = date || this.focused || this.date;
 
             var nextView = dir == 'up' ? this.viewIndex + 1 : this.viewIndex - 1;
-            if (nextView > 2) nextView = 2;
+            if (nextView > 1) nextView = 1; //if (nextView > 2) nextView = 2; (If viewIndexes conatins 'years')
             if (nextView < 0) nextView = 0;
 
             this.silent = true;
@@ -945,6 +951,9 @@
                 case 'ctrlDown':
                     m -= 1;
                     monthChanged = true;
+                    break;
+                case 'ctrlEnter':
+                    this.apply();
                     break;
                 case 'shiftRight':
                 case 'shiftUp':
@@ -1019,7 +1028,6 @@
                 found = false,
                 _this = this,
                 pressedKeys = this.keys.sort();
-
             for (var hotKey in hotKeys) {
                 currentHotKey = hotKeys[hotKey];
                 if (pressedKeys.length != currentHotKey.length) continue;
@@ -1172,8 +1180,8 @@
             if (!this.visible) {
                 this.show();
             }
-            else {
-              this.hide()
+            else if (!this.focused){
+              this.hide();
             }
         },
 
@@ -1212,9 +1220,7 @@
 
             if (this.visible && !this.inFocus) {
                 this.hide();
-                console.log('hided by body')
             }
-            console.log('body')
         },
 
         _onMouseUpEl: function (e) {
@@ -1233,7 +1239,7 @@
             }
 
             // Enter
-            if (code == 13) {
+            if (code == 13 && !(this._isHotKeyPressed())) {
                 if (this.focused) {
                     if (this._getCell(this.focused).hasClass('-disabled-')) return;
                     if (this.view != this.opts.minView) {
@@ -1281,16 +1287,20 @@
             }
 
             $cell.addClass('-focus-');
-
             this.focused = date;
             this.silent = false;
 
             if (this.opts.range && this.selectedDates.length == 1) {
-                this.minRange = this.selectedDates[0];
-                this.maxRange = '';
-                if (datepicker.less(this.minRange, this.focused)) {
-                    this.maxRange = this.minRange;
+                if (datepicker.isSame(this.selectedDates[0], this._focused), this.cellType) {
+                    this.minRange ='';
+                    this.maxRange ='';
+                }
+                if (datepicker.less(this.selectedDates[0], this._focused, this.cellType)) {
+                    this.maxRange = this.selectedDates[0];
                     this.minRange = '';
+                } else if (datepicker.bigger(this.selectedDates[0], this._focused, this.cellType)) {
+                    this.minRange = this.selectedDates[0];
+                    this.maxRange = '';
                 }
                 this.views[this.currentView]._update();
             }
@@ -1304,6 +1314,13 @@
             this.silent = true;
             this.focused = '';
             this.silent = false;
+        },
+
+        _onMouseLeaveCellsArea: function () {
+            if (this.selectedDates.length == 1) {
+                this.minRange ='';
+                this.maxRange = '';
+            }
         },
 
         _onTimeChange: function (e, h, m) {
@@ -1347,11 +1364,12 @@
             }
             this._focused = val;
             if (this.opts.range && this.selectedDates.length == 1) {
-                this.minRange = this.selectedDates[0];
-                this.maxRange = '';
-                if (datepicker.less(this.minRange, this._focused)) {
-                    this.maxRange = this.minRange;
+                if (datepicker.less(this.selectedDates[0], this._focused, this.cellType)) {
+                    this.maxRange = this.selectedDates[0];
                     this.minRange = '';
+                } else if (datepicker.bigger(this.selectedDates[0], this._focused, this.cellType)) {
+                    this.minRange = this.selectedDates[0];
+                    this.maxRange = '';
                 }
             }
             if (this.silent) return;
@@ -1491,12 +1509,32 @@
 
     datepicker.less = function (dateCompareTo, date, type) {
         if (!dateCompareTo || !date) return false;
-        return date.getTime() < dateCompareTo.getTime();
+        var d1 = datepicker.getParsedDate(dateCompareTo),
+            d2 = datepicker.getParsedDate(date),
+            _type = type ? type : 'day',
+
+            conditions = {
+                day: (d1.date > d2.date && d1.month == d2.month && d1.year == d1.year) || (d1.month > d2.month && d1.year == d2.year) || d1.year > d2.year,
+                month: (d1.month > d2.month && d1.year == d2.year) || d1.year > d2.year,
+                year: d1.year > d2.year
+            };
+
+        return conditions[_type];
     };
 
     datepicker.bigger = function (dateCompareTo, date, type) {
         if (!dateCompareTo || !date) return false;
-        return date.getTime() > dateCompareTo.getTime();
+        var d1 = datepicker.getParsedDate(dateCompareTo),
+            d2 = datepicker.getParsedDate(date),
+            _type = type ? type : 'day',
+
+            conditions = {
+                day: (d1.date < d2.date && d1.month == d2.month && d1.year == d1.year) || (d1.month < d2.month && d1.year == d2.year) || d1.year < d2.year,
+                month: (d1.month < d2.month && d1.year == d2.year) || d1.year < d2.year,
+                year: d1.year < d2.year
+            };
+
+        return conditions[_type];
     };
 
     datepicker.getLeadingZeroNum = function (num) {
@@ -1606,7 +1644,7 @@
             if (i > 7) return html;
             if (curDay == 7) return this._getDayNamesHtml(firstDay, 0, html, ++i);
 
-            html += '<div class="datepicker--day-name' + (this.d.isWeekend(curDay) ? " -weekend-" : "") + '">' + this.d.loc.daysMin[curDay] + '</div>';
+            html += '<div class="datepicker--day-name' + (this.d.isWeekend(curDay) ? " -weekend-" : "") + '">' + '<span>' + this.d.loc.daysMin[curDay] + '</span>' + '</div>';
 
             return this._getDayNamesHtml(firstDay, ++curDay, html, ++i);
         },
@@ -1656,33 +1694,33 @@
             }
 
             if (opts.range) {
-                if (dp.isSame(minRange, date, type)) classes += ' -range-from-';
-                if (dp.isSame(maxRange, date, type)) classes += ' -range-to-';
-
+                if (dp.isSame(minRange, date, type) && !dp.isSame(minRange, maxRange, type)) classes += ' -range-from-';
+                if (dp.isSame(maxRange, date, type)&& !dp.isSame(minRange, maxRange, type)) classes += ' -range-to-';
                 if (parent.selectedDates.length == 1 && parent.focused) {
                     if (
-                        (dp.bigger(minRange, date) && dp.less(parent.focused, date)) ||
-                        (dp.less(maxRange, date) && dp.bigger(parent.focused, date)))
+                        (dp.bigger(minRange, date, type) && dp.less(parent.focused, date, type)) ||
+                        (dp.less(maxRange, date, type) && dp.bigger(parent.focused, date, type)))
                     {
                         classes += ' -in-range-'
                     }
 
-                    if (dp.less(maxRange, date) && dp.isSame(parent.focused, date)) {
+                    if (dp.less(maxRange, date, type) && dp.isSame(parent.focused, date, type)) {
                         classes += ' -range-from-'
                     }
-                    if (dp.bigger(minRange, date) && dp.isSame(parent.focused, date)) {
+                    if (dp.bigger(minRange, date, type) && dp.isSame(parent.focused, date, type)) {
                         classes += ' -range-to-'
                     }
 
                 } else if (parent.selectedDates.length == 2) {
-                    if (dp.bigger(minRange, date) && dp.less(maxRange, date)) {
-                        classes += ' -in-range-'
+                    if (dp.bigger(minRange, date, type) && dp.less(maxRange, date, type)) {
+                     classes += ' -in-range-'
                     }
+                    if (dp.isSame(minRange, date, type) && !dp.isSame(minRange, maxRange, type)) classes += ' -range-from-';
                 }
             }
 
 
-            if (dp.isSame(currentDate, date, type)) classes += ' -current-';
+            if (dp.isSame(currentDate, date, type) && !dp.isSame(currentDate, parent.focused, type)) classes += ' -current-';
             if (parent.focused && dp.isSame(date, parent.focused, type)) classes += ' -focus-';
             if (parent._isSelected(date, type)) classes += ' -selected-';
             if (!parent._isInRange(date, type) || render.disabled) classes += ' -disabled-';
@@ -1754,7 +1792,7 @@
         _getMonthHtml: function (date) {
             var content = this._getCellContents(date, 'month');
 
-            return '<div class="' + content.classes + '" data-month="' + date.getMonth() + '">' + content.html + '</div>'
+            return '<div class="' + content.classes + '" data-month="' + date.getMonth() + '">' + '<span>' + content.html + '</span>' + '</div>'
         },
 
         _getYearsHtml: function (date) {
