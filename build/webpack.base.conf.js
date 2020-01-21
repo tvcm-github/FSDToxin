@@ -16,15 +16,15 @@ const PAGES_DIR = {
   uikit: `${PATHS.src}/uikit/`
 }
 
-// Get pathes containing "filter" to all files in "startPath" and all subdirectories
-function getFilesPathes(startPath, filter){
+// Getting paths containing "filter" to all files in "startPath" directory and all it's subdirectories
+function getFilesPaths(startPath, filter){
   var filesPathes = [];
   var files=fs.readdirSync(startPath);
   for(var i=0;i<files.length;i++){
       var filename=path.join(startPath,files[i]);
       var stat = fs.lstatSync(filename);
       if (stat.isDirectory()){
-          filesPathes = filesPathes.concat(getFilesPathes(filename, filter)); //recurse
+          filesPathes = filesPathes.concat(getFilesPaths(filename, filter)); //recursion
       }
       else if (filename.indexOf(filter)>=0) {
           filesPathes.push(filename);
@@ -107,11 +107,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].css`,
     }),
-    ...getFilesPathes(PAGES_DIR.pages, '.pug').map(page => new HtmlWebpackPlugin({
+    ...getFilesPaths(PAGES_DIR.pages, '.pug').map(page => new HtmlWebpackPlugin({
       template: page,
       filename: `./${path.basename(page).replace(/\.pug/,'.html')}`
     })),
-    ...getFilesPathes(PAGES_DIR.uikit, '.pug').map(page => new HtmlWebpackPlugin({
+    ...getFilesPaths(PAGES_DIR.uikit, '.pug').map(page => new HtmlWebpackPlugin({
       template: page,
       filename: `./uikit/${path.basename(page).replace(/\.pug/,'.html')}`
     })),
