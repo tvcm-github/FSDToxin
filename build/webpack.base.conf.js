@@ -16,6 +16,8 @@ const PAGES_DIR = {
   uikit: `${PATHS.src}/uikit/`
 }
 
+const entryPoints = {common: `${PATHS.src}/common.js`}
+
 // Getting paths containing "filter" to all files in "startPath" directory and all it's subdirectories
 function getFilesPaths(startPath, filter){
   var filesPathes = [];
@@ -33,17 +35,22 @@ function getFilesPaths(startPath, filter){
   return filesPathes;
 };
 
+Object.values(PAGES_DIR).map(dir => getFilesPaths(dir, '.js').map(function(filepath) {
+  Object.assign(entryPoints, {[`${path.basename(filepath, '.js')}`] : filepath, })})),
 
 module.exports = {
   externals: {
     paths: PATHS,
   },
-  entry: {
-    main: `${PATHS.src}/main.js`,
-  },
+  entry: entryPoints,
   output: {
     filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   module: {
     rules: [
@@ -108,10 +115,12 @@ module.exports = {
       filename: `${PATHS.assets}css/[name].css`,
     }),
     ...getFilesPaths(PAGES_DIR.pages, '.pug').map(page => new HtmlWebpackPlugin({
+      chunks: [path.basename(page, '.pug'), 'common'],
       template: page,
       filename: `./${path.basename(page).replace(/\.pug/,'.html')}`
     })),
     ...getFilesPaths(PAGES_DIR.uikit, '.pug').map(page => new HtmlWebpackPlugin({
+      chunks: [path.basename(page, '.pug'), 'common'],
       template: page,
       filename: `./uikit/${path.basename(page).replace(/\.pug/,'.html')}`
     })),
@@ -119,8 +128,5 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    // new CopyWebpackPlugin([
-    //   {from: `${PATHS.src}/img`, to: `${PATHS.assets}img` },
-    // ]),
   ],
 }
