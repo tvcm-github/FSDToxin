@@ -115,12 +115,12 @@ module.exports = {
       filename: `${PATHS.assets}css/[name].css`,
     }),
     ...getFilesPaths(PAGES_DIR.pages, '.pug').map(page => new HtmlWebpackPlugin({
-      chunks: [path.basename(page, '.pug'), 'common'],
+      chunks: ['common', path.basename(page, '.pug')],
       template: page,
       filename: `./${path.basename(page).replace(/\.pug/,'.html')}`
     })),
     ...getFilesPaths(PAGES_DIR.uikit, '.pug').map(page => new HtmlWebpackPlugin({
-      chunks: [path.basename(page, '.pug'), 'common'],
+      chunks: ['common', path.basename(page, '.pug')],
       template: page,
       filename: `./uikit/${path.basename(page).replace(/\.pug/,'.html')}`
     })),
