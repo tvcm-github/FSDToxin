@@ -11,7 +11,6 @@ $(document).ready(function(){
   $('.dropdown').on('mouseup', function(e) {
     e.originalEvent.inFocus = true;
     $(this).children().off('blur');
-    console.log('blabla')
   });
 })
 

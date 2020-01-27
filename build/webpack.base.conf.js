@@ -47,11 +47,6 @@ module.exports = {
     filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
-  },
   module: {
     rules: [
       {

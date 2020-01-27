@@ -1358,6 +1358,10 @@
             }
             this._focused = val;
             if (this.opts.range && this.selectedDates.length == 1) {
+                if (datepicker.isSame(this.selectedDates[0], this._focused), this.cellType) {
+                    this.minRange ='';
+                    this.maxRange ='';
+                }
                 if (datepicker.less(this.selectedDates[0], this._focused, this.cellType)) {
                     this.maxRange = this.selectedDates[0];
                     this.minRange = '';

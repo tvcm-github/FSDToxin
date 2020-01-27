@@ -32,6 +32,7 @@
   .datepicker--cell.-focus- {
     background: linear-gradient(180deg, rgba(188, 156, 255, 0.25) 0%, rgba(139, 164, 249, 0.25) 100%); }
   .datepicker--cell.-current- {
+    font-weight: bold;
     background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
     color: #ffffff; }
     .datepicker--cell.-current-.-focus- {
@@ -77,6 +78,7 @@
     border-radius: 50%; }
   .datepicker--cell.-selected- {
     color: #ffffff;
+    font-weight: bold;
     border: none;
     background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%); }
     .datepicker--cell.-selected-.-current- {
@@ -233,7 +235,7 @@
 
 .datepicker--content {
   box-sizing: content-box;
-  padding: 0 2rem; }
+  padding: 0 var(--dp-padding); }
   .-only-timepicker- .datepicker--content {
     display: none; }
 
@@ -290,7 +292,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   min-height: 2.4rem;
-  padding: calc(0.0625*(100% + 2px)); }
+  padding: var(--dp-padding); }
   .-only-timepicker- .datepicker--nav {
     display: none; }
 
@@ -337,7 +339,7 @@
   display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
-  padding: 2rem; }
+  padding: var(--dp-padding); }
 
 .datepicker--button {
   cursor: pointer;
