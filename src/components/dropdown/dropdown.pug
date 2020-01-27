@@ -1,5 +1,16 @@
 include ../text-field/text-field
 
 mixin dropdown(params)
-  label.dropdown(title=params.title)
-    +text-field({id: params.id, value: params.value, placeholder: params.placeholder, focusedView: params.focusedView, rightSpace: true, ro: true, rq: true, autocomplete: "off", dropdown: params.dropdownType})
+  - var baseClass = 'dropdown'
+  - var classes = [baseClass]
+  - var title
+
+  case params.dropdownType
+    when 'range-date'
+      - classes.push(baseClass + '--range-date')
+      - title = 'Выберите даты'
+    when 'separated-date'
+      - classes.push(baseClass + '--separated-date')
+      - title = 'Выберите даты'
+  label(class=classes, title=title)
+    +text-field({id: params.id, value: params.value, placeholder: params.placeholder, focusedView: params.focusedView, rightSpace: true, ro: true, rq: true, autocomplete: "off", dropdown: true})

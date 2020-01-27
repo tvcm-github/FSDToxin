@@ -19,6 +19,6 @@ mixin input-container(params)
         when 'range-date'
         when 'separated-date'
         when 'separated-date-pair'
-          +dropdown({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, dropdownType: params.inputType, title: 'Выберите даты'})
+          +dropdown({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, dropdownType: params.inputType})
         default
           +text-field({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, type: params.type, ro: params.ro, rq: params.rq})

@@ -1,9 +1,10 @@
 import '../text-field/text-field'
 import './dropdown.scss'
-import './dropdown--dates'
+import './dropdown--range-date'
+import './dropdown--separated-date'
 
 $(document).ready(function(){
-  $('.text-field--dropdown').keypress(function(event) {
+  $('.dropdown').children('input').keypress(function(event) {
     if (event.keyCode === 13) {
       $(this).click()
     }
