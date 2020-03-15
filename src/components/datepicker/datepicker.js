@@ -1,3 +1,4 @@
+import './datepicker.css';
 ;(function (window, $, undefined) { ;(function () {
     var VERSION = '2.2.3',
         pluginName = 'datepicker',
@@ -108,13 +109,54 @@
         this.$el = $(el);
         this.inputs = [this.$el];
         this.opts = $.extend(true, {}, defaults, options, this.$el.data());
+        this.target;
+
+        if (this.opts.applyButton || this.opts.twoInputsIdDiff) {
+          this.appliedDates = [];
+        }
 
         if (this.opts.twoInputsIdDiff) {
-          var diff = this.opts.twoInputsIdDiff.split(" "),
-              pairInputId = this.$el.attr('id').replace(diff[0], diff[1]);
-              this.$secondEl = $('#' + pairInputId);
-              this.inputs.push(this.$secondEl)
+            this.diff = this.opts.twoInputsIdDiff.split(" ");
+            var pairInputId = this.$el.attr('id').replace(this.diff[0], this.diff[1]);
+            this.$secondEl = $('#' + pairInputId);
+            this.inputs.push(this.$secondEl);
+            this.targetInputIndex;
+            this.selectedDateInputIndex;
         }
+
+        this.isSameInput = function () {
+          if (this.opts.twoInputsIdDiff && this.targetInputIndex == this.selectedDateInputIndex) {
+              return true;
+          }
+          else {
+              return false;
+          }
+        };
+
+        this.dateOutOfBounds = function (date) {
+          if (this.opts.twoInputsIdDiff) {
+              if (this.selectedDates.length == 2) {
+                  if ((this.targetInputIndex == 1 && datepicker.less(this.minRange, date)) ||
+                  (this.targetInputIndex == 0 && datepicker.bigger(this.maxRange, date))) {
+                      return true;
+                  }
+                  else {
+                      return false;
+                  }
+              } else if (this.selectedDates.length == 1) {
+                  if ((this.targetInputIndex == 1 && datepicker.bigger(date, this.selectedDates[0])) ||
+                  (this.targetInputIndex == 0 && datepicker.less(date, this.selectedDates[0]))) {
+                      return true;
+                  }
+                  else {
+                      return false;
+                  }
+              }
+          }
+          else {
+              return false;
+          }
+        };
 
         if ($body == undefined) {
             $body = $('body');
@@ -477,6 +519,7 @@
                 len = selectedDates.length,
                 newDate = '';
 
+
             if (Array.isArray(date)) {
                 date.forEach(function (d) {
                     _this.selectDate(d)
@@ -523,6 +566,7 @@
                 _this.nav._render()
             }
 
+
             if (opts.multipleDates && !opts.range) { // Set priority to range functionality
                 if (len === opts.multipleDates) return;
                 if (!_this._isSelected(date)) {
@@ -530,33 +574,44 @@
                 }
             } else if (opts.range) {
                 if (len == 2) {
-                    _this.selectedDates = [date];
-                    // _this.minRange = date;
-                    _this.maxRange = '';
-                    _this.minRange = '';
-                } else if (len == 1) {
-                    _this.selectedDates.push(date);
-                    if (!_this.maxRange){
-                        _this.maxRange = date;
+                    if (!(_this.dateOutOfBounds(date))) {
+                        _this.selectedDates[_this.targetInputIndex] = date;
+                        _this.maxRange = _this.selectedDates[1];
+                        _this.minRange = _this.selectedDates[0];
                     } else {
-                        _this.minRange = date;
+                        _this.selectedDates = [date];
+                        _this.selectedDateInputIndex = _this.targetInputIndex;
+                        _this.maxRange = '';
+                        _this.minRange = '';
                     }
-                    // Swap dates if they were selected via dp.selectDate() and second date was smaller then first
-                    if (datepicker.bigger(_this.maxRange, _this.minRange)) {
-                        _this.maxRange = _this.minRange;
-                        _this.minRange = date;
+                } else if (len == 1) {
+                    if (_this.isSameInput() || _this.dateOutOfBounds(date)) {
+                        _this.selectedDates = [date];
+                        _this.selectedDateInputIndex = _this.targetInputIndex;
+                    } else {
+                        _this.selectedDates.push(date);
+                        if (!_this.maxRange){
+                            _this.maxRange = date;
+                        } else {
+                            _this.minRange = date;
+                        }
+                        // Swap dates if they were selected via dp.selectDate() and second date was smaller then first
+                        if (datepicker.bigger(_this.maxRange, _this.minRange)) {
+                            _this.maxRange = _this.minRange;
+                            _this.minRange = date;
+                        }
+                        _this.selectedDates = [_this.minRange, _this.maxRange]
                     }
-                    _this.selectedDates = [_this.minRange, _this.maxRange]
 
                 } else {
                     _this.selectedDates = [date];
-                    // _this.minRange = date;
+                    if (opts.twoInputsIdDiff) {
+                        _this.selectedDateInputIndex = _this.targetInputIndex;
+                    }
                 }
-            } else {
-                _this.selectedDates = [date];
             }
 
-            if (!_this.opts.applyButton) {
+            if (!(_this.opts.applyButton || _this.opts.twoInputsIdDiff)) {
               _this._setInputValue();
             }
 
@@ -573,7 +628,7 @@
                 }
             }
 
-            _this.views[this.currentView]._render()
+            _this.views[this.currentView]._render();
         },
 
         removeDate: function (date) {
@@ -595,7 +650,7 @@
                     }
 
                     _this.views[_this.currentView]._render();
-                    if (!_this.opts.applyButton) {
+                    if (!(_this.opts.applyButton || _this.opts.twoInputsIdDiff)) {
                       _this._setInputValue();
                     }
 
@@ -620,6 +675,9 @@
         },
 
         clear: function () {
+            if (this.opts.applyButton || this.opts.twoInputsIdDiff) {
+              this.appliedDates = [];
+            }
             this.selectedDates = [];
             this.minRange = '';
             this.maxRange = '';
@@ -633,16 +691,11 @@
         },
 
         apply: function () {
-          if (this.opts.range){
-            if (this.selectedDates.length > 1)
-              this._setInputValue();
-          }
-          else if (this.selectedDates.length > 0) {
-            this._setInputValue();
-          }
-
-          this.$el.focus()
-          this.hide()
+          var dates = [...this.selectedDates];
+          this.appliedDates = dates;
+          this._setInputValue();
+          this.$el.focus();
+          this.hide();
         },
 
         /**
@@ -733,20 +786,25 @@
                 altValues;
 
             if (opts.altField && _this.$altField.length) {
-                altValues = this.selectedDates.map(function (date) {
+                altValues = _this.selectedDates.map(function (date) {
                     return _this.formatDate(altFormat, date)
                 });
-                altValues = altValues.join(this.opts.multipleDatesSeparator);
-                this.$altField.val(altValues);
+                altValues = altValues.join(_this.opts.multipleDatesSeparator);
+                _this.$altField.val(altValues);
             }
 
             if (!opts.twoInputsIdDiff) {
-              value = value.join(this.opts.multipleDatesSeparator);
-              this.$el.val(value)
+              value = value.join(_this.opts.multipleDatesSeparator);
+              _this.$el.val(value)
             }
-            else if (opts.range || opts.multipleDates == 2) {
-              this.$el.val(value[0]);
-              this.$secondEl.val(value[1]);
+            else if (opts.range) {
+              if (_this.selectedDates.length == 1) {
+                _this.inputs.map(input => input.val(''));
+                _this.inputs[_this.targetInputIndex].val(value)
+              } else {
+                _this.$el.val(value[0]);
+                _this.$secondEl.val(value[1]);
+              }
             }
 
 
@@ -867,14 +925,15 @@
             // this.setPosition(this.opts.position);
             this.$datepicker.addClass('active');
             this.visible = true;
-
+            this.views[this.currentView]._render();
             if (onShow) {
                 this._bindVisionEvents(onShow)
             }
         },
 
         hide: function () {
-            var onHide = this.opts.onHide;
+            var onHide = this.opts.onHide,
+                dates = [...this.appliedDates];
 
             this.$datepicker
                 .removeClass('active')
@@ -887,7 +946,18 @@
 
             this.inFocus = '';
             this.visible = false;
-            this.inputs.map(input => input.blur())
+            this.inputs.map(input => input.blur());
+            if (this.opts.applyButton || this.opts.twoInputsIdDiff) {
+              this.selectedDates = dates;
+              if (this.appliedDates.length != 2) {
+                this.minRange = '';
+                this.maxRange = '';
+              }
+              else {
+                this.minRange = this.appliedDates[0];
+                this.maxRange = this.appliedDates[1];
+              }
+            }
 
             if (onHide) {
                 this._bindVisionEvents(onHide)
@@ -1172,7 +1242,13 @@
 
         _onShowEvent: function (e) {
             if (!this.visible) {
-                this.show();
+              this.target = e.target;
+              if (this.opts.twoInputsIdDiff) {
+                this.targetInputIndex = this.inputs.findIndex(input =>
+                    input.attr('id') === this.target.id
+                  );
+              }
+              this.show();
             }
             else if (!this.focused){
               this.hide();
@@ -1181,7 +1257,7 @@
 
         _onBlur: function () {
             if (!this.inFocus && this.visible) {
-                this.hide();
+              this.hide();
             }
         },
 
@@ -1285,15 +1361,20 @@
             this.silent = false;
 
             if (this.opts.range && this.selectedDates.length == 1) {
-                if (datepicker.isSame(this.selectedDates[0], this._focused), this.cellType) {
-                    this.minRange ='';
-                    this.maxRange ='';
-                }
-                if (datepicker.less(this.selectedDates[0], this._focused, this.cellType)) {
-                    this.maxRange = this.selectedDates[0];
+                if (!(this.isSameInput())) {
+                    if (datepicker.isSame(this.selectedDates[0], this._focused, this.cellType)) {
+                        this.minRange ='';
+                        this.maxRange ='';
+                    }
+                    if (datepicker.less(this.selectedDates[0], this._focused, this.cellType)) {
+                        this.maxRange = this.selectedDates[0];
+                        this.minRange = '';
+                    } else if (datepicker.bigger(this.selectedDates[0], this._focused, this.cellType)) {
+                        this.minRange = this.selectedDates[0];
+                        this.maxRange = '';
+                    }
+                } else {
                     this.minRange = '';
-                } else if (datepicker.bigger(this.selectedDates[0], this._focused, this.cellType)) {
-                    this.minRange = this.selectedDates[0];
                     this.maxRange = '';
                 }
                 this.views[this.currentView]._update();
@@ -1314,6 +1395,7 @@
             if (this.selectedDates.length == 1) {
                 this.minRange ='';
                 this.maxRange = '';
+                this.views[this.currentView]._update();
             }
         },
 
@@ -1713,7 +1795,7 @@
                     if (dp.bigger(minRange, date, type) && dp.less(maxRange, date, type)) {
                      classes += ' -in-range-'
                     }
-                    if (dp.isSame(minRange, date, type) && !dp.isSame(minRange, maxRange, type)) classes += ' -range-from-';
+                    // if (dp.isSame(minRange, date, type) && !dp.isSame(minRange, maxRange, type)) classes += ' -range-from-';
                 }
             }
 
@@ -1944,7 +2026,7 @@
             if (this.opts.clearButton) {
                 this._addButton('clear')
             }
-            if (this.opts.applyButton) {
+            if (this.opts.applyButton || this.opts.twoInputsIdDiff) {
                 this._addButton('apply')
             }
         },
