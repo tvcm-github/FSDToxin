@@ -3,6 +3,7 @@ import './dropdown.scss'
 import './dropdown--range-date'
 import './dropdown--separated-date'
 import './dropdown--room-features'
+import './dropdown--guests'
 
 $(document).ready(function(){
   $('.dropdown').children('input').keypress(function(event) {

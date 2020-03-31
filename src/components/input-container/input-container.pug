@@ -4,8 +4,9 @@ include ../dropdown/dropdown
 
 mixin input-container(params)
   - var classes = []
-  if (params.inputType == 'range-date')
-    - classes.push('input-container--relative')
+  if (params.inputType)
+    if (!params.inputType.includes('separated'))
+      - classes.push('input-container--relative')
 
   .input-container(class=classes)
     if (params.label)
@@ -19,6 +20,8 @@ mixin input-container(params)
         when 'range-date'
         when 'separated-date'
         when 'separated-date-pair'
+        when 'room-features'
+        when 'guests'
           +dropdown({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, dropdownType: params.inputType})
         default
           +text-field({id: params.id, placeholder: params.placeholder, value: params.value, focusedView: params.focusedView, mask: params.mask, type: params.type, ro: params.ro, rq: params.rq})

@@ -1,8 +1,12 @@
 import IMask from 'imask'
 import './text-field.scss'
 
-var elements = document.getElementsByClassName('birthday-mask')
+var $dropdownField = $('.text-field--dropdown');
+$dropdownField.parent().on('toggleActive', function(){
+  $(this).children().toggleClass('text-field--focused text-field--no-radius')
+})
 
+var elements = document.getElementsByClassName('birthday-mask')
 Array.prototype.forEach.call(elements, function(element){
   var dateMask = IMask(element, {
     mask: Date,
