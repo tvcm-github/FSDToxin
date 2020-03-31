@@ -110,6 +110,7 @@ import './datepicker.css';
         this.inputs = [this.$el];
         this.opts = $.extend(true, {}, defaults, options, this.$el.data());
         this.target;
+        this.elAreaInFocus = false;
 
         if (this.opts.applyButton || this.opts.twoInputsIdDiff) {
           this.appliedDates = [];
@@ -240,6 +241,8 @@ import './datepicker.css';
             this.$datepicker.on('mouseenter', '.datepicker--cell', this._onMouseEnterCell.bind(this));
             this.$datepicker.on('mouseleave', '.datepicker--cell', this._onMouseLeaveCell.bind(this));
             this.$datepicker.on('mouseleave', '.datepicker--cells', this._onMouseLeaveCellsArea.bind(this));
+            this.$datepicker.on('mouseenter',  this._onMouseEnterElementArea.bind(this));
+            this.$datepicker.on('mouseleave',  this._onMouseLeaveElementArea.bind(this));
 
             this.inited = true;
         },
@@ -256,6 +259,8 @@ import './datepicker.css';
             element.on('mouseup.adp', _this._onMouseUpEl.bind(_this));
             element.on('blur.adp', _this._onBlur.bind(_this));
             element.on('keyup.adp', _this._onKeyUpGeneral.bind(_this));
+            element.on('mouseenter', _this._onMouseEnterElementArea.bind(_this));
+            element.on('mouseleave', _this._onMouseLeaveElementArea.bind(_this));
           });
           // $(window).on('resize.adp', this._onResize.bind(this));
           $('body').on('mouseup.adp', this._onMouseUpBody.bind(this));
@@ -1261,13 +1266,20 @@ import './datepicker.css';
             }
         },
 
+        _onMouseEnterElementArea: function() {
+          this.elAreaInFocus = true;
+        },
+
+        _onMouseLeaveElementArea: function() {
+          this.elAreaInFocus = false;
+        },
+
         _onMouseDownDatepicker: function (e) {
             this.inFocus = true;
         },
 
         _onMouseUpDatepicker: function (e) {
             this.inFocus = false;
-            e.originalEvent.inFocus = true;
             // if (!e.originalEvent.timepickerFocus) this.$el.focus();
         },
 
@@ -1285,16 +1297,15 @@ import './datepicker.css';
         //     }
         // },
 
-        _onMouseUpBody: function (e) {
-            if (e.originalEvent.inFocus) return;
+        _onMouseUpBody: function () {
+            if (this.elAreaInFocus) return
 
             if (this.visible && !this.inFocus) {
                 this.hide();
             }
         },
 
-        _onMouseUpEl: function (e) {
-            e.originalEvent.inFocus = true;
+        _onMouseUpEl: function () {
             setTimeout(this._onKeyUpGeneral.bind(this),4);
         },
 
