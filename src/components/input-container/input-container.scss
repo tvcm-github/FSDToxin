@@ -1,12 +1,14 @@
 .input-container {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
+  width: 100%;
   max-width: 32rem;
   box-sizing: border-box;
 
-  &--relative {
-    position: relative;
+  &--static {
+    position: static;
   }
 
   &__label,

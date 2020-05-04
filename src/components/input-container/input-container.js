@@ -1,4 +1,2 @@
 import './input-container.scss'
-import '../text-field/text-field'
-import '../subscription-form/subscription-form'
-import '../dropdown/dropdown'
+$('.input-container').on('mousedown', function(e) {e.preventDefault();})

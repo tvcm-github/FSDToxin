@@ -66,7 +66,8 @@ module.exports = {
         exclude: [/fonts/],
         loader: 'file-loader',
         options: {
-          name: `${PATHS.assets}img/[name].[ext]`
+          name: `${PATHS.assets}img/[name].[ext]`,
+          publicPath: `../../`
         },
       },
       {
