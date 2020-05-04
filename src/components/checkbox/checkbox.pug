@@ -1,0 +1,5 @@
+mixin checkbox(params)
+  label(for=params.id, class='checkbox')
+    input.checkbox__input(id=params.id, type='checkbox')
+    span.checkbox__box
+    span.checkbox__label= params.label
