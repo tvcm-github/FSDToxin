@@ -84,7 +84,7 @@
   box-sizing: border-box;
   box-shadow: 0 1rem 2rem rgba(31, 32, 65, 0.05);
   border-top: none;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 0.4rem 0.4rem;
   cursor: default;
   display: none;
   left: 0;
@@ -110,7 +110,7 @@
 
 .iqdropdown-content {
   flex: 1;
-  padding-right: 10px
+  padding-right: 1rem;
 }
 
 .iqdropdown p.iqdropdown-description {

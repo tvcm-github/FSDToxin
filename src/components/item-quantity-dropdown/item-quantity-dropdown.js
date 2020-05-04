@@ -85,6 +85,7 @@ import './item-quantity-dropdown.css';
       function _onBlur() {
         if (!inFocus && visible) {
           hide()
+          console.log('blured')
         }
       }
 

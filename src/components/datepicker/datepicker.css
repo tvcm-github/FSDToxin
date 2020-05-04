@@ -178,7 +178,7 @@
   background: #fff;
   border: var(--dp-border) solid rgba(31, 32, 65, 0.25);
   box-shadow: 0 10px 20px rgba(31, 32, 65, 0.05);
-  border-radius: 4px;
+  border-radius: 0.4rem;
   box-sizing: border-box;
   font-family: 'Montserrat', Helvetica , Arial, sans-serif;
   font-size: 1.2rem;
@@ -314,7 +314,7 @@
 
 .datepicker--nav-action {
   width: 2.4rem;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -331,7 +331,7 @@
   line-height: 2.4rem;
   font-weight: bold;
   color: rgb(31, 32, 65);
-  border-radius: 4px;
+  border-radius: 0.4rem;
   user-select: none;}
   .datepicker--nav-title.-disabled- {
     cursor: default;
@@ -348,7 +348,7 @@
 
 .datepicker--button {
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   text-transform: uppercase;
   font-weight: bold;
   user-select: none;}
@@ -418,7 +418,7 @@
   .datepicker--time-current-minutes:after {
     content: '';
     background: #f0f0f0;
-    border-radius: 4px;
+    border-radius: 0.4rem;
     position: absolute;
     left: -2px;
     top: -3px;

@@ -1,6 +1,10 @@
 extends ../../templates/uikit-page/uikit-page
+include ../../components/text-field/text-field
+include ../../components/subscription-form/subscription-form
+include ../../components/dropdown/dropdown
 include ../../components/input-container/input-container
 include ../../components/dates-block/dates-block
+include ../../components/checkbox/checkbox
 
 block variables
  - var title = 'Form Elements';
@@ -8,17 +12,22 @@ block variables
 block main
   .form-elements-container
     .form-elements-container__column
-      +input-container({label: 'Text field', tip: 'Default', id: 'uikit-text-default', placeholder: 'Email'})
-      +input-container({label: 'Text field', tip: 'Hover / Focus', id: 'uikit-text-hovfocus', value: 'This is pretty awesome', focusedView: true})
-      +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask1', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
-      +input-container({label: 'Masked text field', tip: 'Default', id: 'date-mask2', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
-      +input-container({label: 'Subscription text field', id: 'uikit-subscription', placeholder: 'Email', inputType: 'subscription'})
-    .form-elements-container__column
-      +input-container({label: 'Date dropdown', id: 'uikit-date-range', placeholder: "19 авг - 23 авг", inputType: 'range-date'})
-      +input-container({label: 'Dropdown', tip: 'Default', id: 'uikit-iqdropdown-guests-default', inputType: 'guests'})
-      +input-container({label: 'Dropdown', tip: 'Default', id: 'uikit-iqdropdown-rd-default', inputType: 'room-features'})
-    .form-elements-container__column
+      +input-container({label: 'Text field', tip: 'Default'})
+        +text-field({type: 'email', id: 'uikit-text-default', placeholder: 'Email', name: "uikit-email", rq: true, autocomplete: 'on'})
+      +input-container({label: 'Text field', tip: 'Hover / Focus'})
+        +text-field({type: 'text', id: 'uikit-text-hovfocus', value: 'This is pretty awesome', focusedView: true, rq: true})
+      +input-container({label: 'Dropdown', tip: 'Default'})
+        +dropdown({id: 'uikit-iqdropdown-guests', dropdownType: 'guests'})
+      +input-container({label: 'Masked text field', tip: 'Default'})
+        +text-field({id: 'uikit-text-masked', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
       +dates-block({uikitBlockLabels: 'Date dropdown', idBase: 'uikit-dates-block'})
-      +input-container({label: 'Dropdown', tip: 'Default', id: 'uikit-iqdropdown-guests-default-2', inputType: 'guests'})
-      +input-container({label: 'Dropdown', tip: 'Default', id: 'uikit-iqdropdown-rd-default-2', inputType: 'room-features'})
+    .form-elements-container__column
+      +input-container({label: 'Filter date dropdown'})
+        +dropdown({id: 'uikit-date-range', dropdownType: 'range-date'})
+      +input-container({label: 'Subscription text field'})
+        +subscription-form({id: 'uikit-subscription', placeholder: 'Email'})
+      +input-container({label: 'Dropdown'})
+        +dropdown({id: 'uikit-iqdropdown-room-features', dropdownType: 'room-features'})
+      +checkbox({id: 'checkbox', label: 'Checkbox'})
+    .form-elements-container__column
 
