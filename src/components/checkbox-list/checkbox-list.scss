@@ -1,0 +1,84 @@
+.checkbox-list {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 32rem;
+
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 1.6rem;
+    transition: 0.2s ease-out;
+    transform-origin: top;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(31, 32, 65);
+    padding: 0;
+    margin: 0;
+    user-select: none;
+  }
+
+  &__item {
+    margin-top: 1rem;
+  }
+
+  &--expandable {
+    position: relative;
+    .checkbox-list__title {
+      cursor: pointer;
+      width: 100%;
+
+      &::after {
+        position: absolute;
+        font-family: "Material Icons";
+        font-weight: normal;
+        font-size: 2.4rem;
+        line-height: 1.5rem;
+        color: rgba(31, 32, 65, 0.5);
+        content: '\e5cf';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 0;
+        top: 0;
+        width: 4.4rem;
+        padding: 0;
+        transition: 0.2s ease-out;
+      }
+    }
+
+    ul {
+      height: 0;
+      transform: scaleY(0);
+      margin-top: 0;
+    }
+
+    .checkbox-list__item {
+      margin: 0;
+    }
+  }
+
+  &--active {
+    .checkbox-list__title::after {
+      transform: rotate(-180deg);
+    }
+
+    ul {
+      height: 100%;
+      transform: scaleY(1);
+      margin-top: 1.6rem;
+    }
+
+    .checkbox-list__item{
+      margin-top: 1rem;
+    }
+  }
+}

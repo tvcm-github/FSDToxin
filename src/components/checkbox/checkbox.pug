@@ -1,5 +1,12 @@
 mixin checkbox(params)
-  label(for=params.id, class='checkbox')
+  - var classes =['checkbox']
+
+  if (params.desc)
+    - classes.push('checkbox--rich')
+
+  label(class=classes)
     input.checkbox__input(id=params.id, type='checkbox')
     span.checkbox__box
-    span.checkbox__label= params.label
+    p.checkbox__label!= params.label
+    if (params.desc)
+      p.checkbox__description!= params.desc
