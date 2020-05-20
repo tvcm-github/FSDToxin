@@ -1,0 +1,14 @@
+include ../checkbox/checkbox
+
+mixin checkbox-list(id, title, expandable, ...checkboxes)
+  - var i = 0
+  - var classes = ['checkbox-list']
+
+  if expandable
+    - classes.push('checkbox-list--expandable')
+  fieldset(class=classes)
+    legend.checkbox-list__title!= title
+    ul
+      each checkbox in  checkboxes
+        li.checkbox-list__item
+          +checkbox({id: id + '-item-' + i++, label: checkbox.label, desc: checkbox.desc})

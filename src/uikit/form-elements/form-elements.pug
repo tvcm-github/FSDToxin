@@ -5,6 +5,7 @@ include ../../components/dropdown/dropdown
 include ../../components/input-container/input-container
 include ../../components/dates-block/dates-block
 include ../../components/checkbox/checkbox
+include ../../components/checkbox-list/checkbox-list
 
 block variables
  - var title = 'Form Elements';
@@ -28,6 +29,19 @@ block main
         +subscription-form({id: 'uikit-subscription', placeholder: 'Email'})
       +input-container({label: 'Dropdown'})
         +dropdown({id: 'uikit-iqdropdown-room-features', dropdownType: 'room-features'})
-      +checkbox({id: 'checkbox', label: 'Checkbox'})
+      +checkbox-list('uikit-rich-cb-btns', 'Rich checkbox buttons', false,
+        {label: 'Широкий коридор', desc: 'Ширина коридоров в номере <span class="nowrap">не менее 91 см.</span>'},
+        {label: 'Помощник для инвалидов', desc: 'На 1 этаже вас встретит специалист <span class="nowrap">и проводит</span> до номера'})
+      +checkbox-list('uikit-cb-btns', 'Checkbox buttons', false,
+        {label: 'Можно курить'},
+        {label: 'Можно с питомцами'},
+        {label: 'Можно пригласить гостей <span class="nowrap">(до 10 человек)</span>'})
+      +checkbox-list('uikit-expandable-cb-list', 'Expandable checkbox list', true,
+        {label: 'Завтрак'},
+        {label: 'Письменный стол'},
+        {label: 'Стул для кормления'},
+        {label: 'Кроватка'},
+        {label: 'Телевизор'},
+        {label: 'Шампунь'})
     .form-elements-container__column
 

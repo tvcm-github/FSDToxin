@@ -2,7 +2,7 @@
 @import './assets/mixes.scss'; //All used titles mixes are here
 
 html {
-  font-size: 62.5%; // 62,5% of 16px is 10px
+  font-size: 62.5%; // 62,5% of 16px is 10px // 71.4285713% (1.4rem = 16px)
 }
 
 body {
@@ -16,3 +16,6 @@ body {
 	color: rgba(#1f2041, 0.75);
 }
 
+.nowrap {
+  white-space: nowrap;
+}
