@@ -5,7 +5,7 @@ mixin checkbox(params)
     - classes.push('checkbox--rich')
 
   label(class=classes)
-    input.checkbox__input(id=params.id, type='checkbox')
+    input.checkbox__input(id=params.id, type='checkbox', name=params.name, checked= params.checked)
     span.checkbox__box
     p.checkbox__label!= params.label
     if (params.desc)

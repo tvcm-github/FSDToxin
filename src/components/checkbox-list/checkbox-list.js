@@ -1,4 +1,5 @@
 import '../checkbox/checkbox'
+import '../toggle-button/toggle-button'
 import './checkbox-list.scss'
 
 $(document).ready(function(){

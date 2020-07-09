@@ -5,9 +5,9 @@ mixin input-container(params)
   if (params.static)
     - classes.push('input-container--static')
 
-  label(class=classes)
+  div(class=classes)
     if (params.label)
-      .input-container__label= params.label
+      label.input-container__label(for=params.for)= params.label
     if (params.tip)
       span.input-container__tip= params.tip
     .input-container__input

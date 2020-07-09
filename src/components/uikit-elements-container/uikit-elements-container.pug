@@ -1,0 +1,7 @@
+mixin uikit-elements-container(params)
+  if params.gap
+   - var classes = 'uikit-elements-container' + '--' + params.gap + '-gap'
+  figure.uikit-elements-container(class=classes)
+    figcaption.uikit-elements-container__title!= params.title
+    .uikit-elements-container__block
+      block

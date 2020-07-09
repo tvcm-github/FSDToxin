@@ -1,0 +1,6 @@
+mixin radio-button(params)
+
+  label.radio-button
+    input.radio-button__input(id = params.id, type="radio", name= params.name, value=params.value)
+    span.radio-button__box
+    span.radio-button__label!= params.label

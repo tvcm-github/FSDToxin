@@ -23,4 +23,4 @@ mixin dropdown(params)
       - title = 'Введите количество гостей'
       - placeholder = 'Сколько гостей'
   label(class=classes, title=title)
-    +text-field({id: params.id, placeholder: placeholder, rightSpace: true, ro: true, rq: true, autocomplete: "off", dropdown: true})
+    +text-field({id: params.id, name: params.name, placeholder: placeholder, rightSpace: true, ro: true, rq: true, autocomplete: "off", dropdown: true})

@@ -1,0 +1,8 @@
+mixin like-button(counter)
+
+  a.like-button(href='javascript:void(0);')
+    .like-button__icons-container
+      i.material-icons.like-button__icon.like-button__icon--disabled!= 'favorite_border'
+      i.material-icons.like-button__icon.like-button__icon--active!= 'favorite'
+    .like-button__counter-container
+      span.like-button__counter!= counter ? counter : '0'

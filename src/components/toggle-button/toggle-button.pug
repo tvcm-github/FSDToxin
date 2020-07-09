@@ -1,0 +1,6 @@
+mixin toggle-button(params)
+
+  label.toggle-button
+    input.toggle-button__input(id = params.id, type="checkbox", name= params.name, checked= params.checked)
+    span.toggle-button__toggle
+    span.toggle-button__label!= params.label

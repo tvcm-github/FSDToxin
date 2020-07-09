@@ -1,0 +1,43 @@
+.uikit-elements-container {
+  width: 100%;
+  max-width: 32rem;
+  margin: 0;
+  padding: 0;
+
+  &__title {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: rgb(31, 32, 65);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__block {
+    margin-top: 1.6rem;
+  }
+
+  &--small-gap {
+    .uikit-elements-container__block {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 0.6rem;
+
+      & > * {
+        margin: 1rem 1rem 0 0;
+      }
+    }
+  }
+
+  &--big-gap {
+    .uikit-elements-container__block {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 0.6rem;
+
+      & > * {
+        margin: 1rem 2rem 0 0;
+      }
+    }
+  }
+}
+

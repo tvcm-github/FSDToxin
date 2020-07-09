@@ -1,14 +1,16 @@
 include ../checkbox/checkbox
+include ../toggle-button/toggle-button
 
-mixin checkbox-list(id, title, expandable, ...checkboxes)
+mixin checkbox-list(params)
   - var i = 0
   - var classes = ['checkbox-list']
 
-  if expandable
+  if params.expandable
     - classes.push('checkbox-list--expandable')
+
   fieldset(class=classes)
-    legend.checkbox-list__title!= title
+    legend.checkbox-list__title!= params.title
     ul
-      each checkbox in  checkboxes
+      each checkbox in params.items
         li.checkbox-list__item
-          +checkbox({id: id + '-item-' + i++, label: checkbox.label, desc: checkbox.desc})
+          +checkbox({id: params.id + '-item-' + i++, label: checkbox.label, name: checkbox.name, checked: checkbox.checked, desc: checkbox.desc})

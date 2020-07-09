@@ -12,8 +12,8 @@ mixin dates-block(params)
 
   .dates-block
     .dates-block__checkin-date
-      +input-container({label: labelCheckin, static: true})
-        +dropdown({id: idCheckin, placeholder: "ДД.ММ.ГГГГ", dropdownType: 'separated-date'})
+      +input-container({label: labelCheckin, for: idCheckin, static: true})
+        +dropdown({id: idCheckin, name: idCheckin, placeholder: "ДД.ММ.ГГГГ", dropdownType: 'separated-date'})
     .dates-block__checkout-date
-      +input-container({label: labelCheckout})
-        +dropdown({id: idCheckout, placeholder: "ДД.ММ.ГГГГ", dropdownType: 'separated-date-pair'})
+      +input-container({label: labelCheckout, for: idCheckout})
+        +dropdown({id: idCheckout, name: idCheckout, placeholder: "ДД.ММ.ГГГГ", dropdownType: 'separated-date-pair'})
