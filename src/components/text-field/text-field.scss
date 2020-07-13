@@ -31,6 +31,7 @@
 
   &--dropdown {
     cursor: pointer;
+    text-overflow: ellipsis;
     &::placeholder {
       color: rgba(31, 32, 65, 0.75);
     }
