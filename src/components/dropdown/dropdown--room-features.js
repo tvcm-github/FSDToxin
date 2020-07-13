@@ -27,7 +27,5 @@ $(document).ready(() => {
         itemTextForms: ['ванная комната', 'ванных комнаты', 'ванных комнат']
       }
     ],
-    maxDisplayItems: 2,
-    strEndSymbol: '...',
   });
 });

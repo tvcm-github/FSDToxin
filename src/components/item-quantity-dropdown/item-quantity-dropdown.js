@@ -126,14 +126,8 @@ import './item-quantity-dropdown.css';
             inputValueArray.unshift(buildItemString(combinedItems, settings.totalTextForms))
           }
 
-          if (inputValueArray.length > settings.maxDisplayItems) {
-            inputValueArray = inputValueArray.slice(0, settings.maxDisplayItems)
-          }
           inputString = inputValueArray.join(settings.itemsSeparator)
 
-          if (settings.strEndSymbol && inputValueArray.length === settings.maxDisplayItems) {
-            inputString = inputString.concat(settings.strEndSymbol)
-          }
 
           $input.val(inputString);
 
