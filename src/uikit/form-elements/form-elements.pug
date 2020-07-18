@@ -11,6 +11,7 @@ include ../../components/bullet-list/bullet-list
 include ../../components/radio-button/radio-button
 include ../../components/toggle-button/toggle-button
 include ../../components/like-button/like-button
+include ../../components/rate-button/rate-button
 
 block variables
  - var title = 'Form Elements';
@@ -32,6 +33,8 @@ block main
         +radio-button({id: 'uikit-genderpick-female', label: 'Женщина', name: 'uikit-genderpick', value: 'female'})
       +uikit-elements-container({title:'Toggle'})
         +toggle-button({id: 'uikit-toggle-button', name: 'uikit-toggle-button', label: 'Получать спецпредложения'})
+      +uikit-elements-container({title:'Rate button'})
+        +rate-button({id: 'uikit-rate-button'})
     .form-elements-container__column
       +input-container({label: 'Filter date dropdown', for: 'uikit-date-range'})
         +dropdown({id: 'uikit-date-range', name: 'uikit-date-range', dropdownType: 'range-date'})

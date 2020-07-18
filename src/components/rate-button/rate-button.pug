@@ -1,0 +1,8 @@
+mixin rate-button(params)
+  - var n = 1;
+  fieldset.rate-button
+    while n <= 5
+      input(type='radio', id=params.id + '-' + n, name=params.id, value=n)
+      label.rate-button__star(for=id=params.id + '-' + n++)
+
+

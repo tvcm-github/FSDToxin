@@ -1,0 +1,58 @@
+.rate-button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  direction: rtl;
+  user-select: none;
+
+  input {
+    margin: 0;
+    position: absolute;
+    appearance: none;
+
+    &:checked ~ .rate-button__star:after {
+      opacity: 1;
+    }
+  }
+
+  &__star {
+    position: relative;
+    display: inline-block;
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 2.4rem;
+    margin-right: -0.35rem;
+    cursor: pointer;
+
+    &:hover:after,
+    &:hover ~ &:after {
+      opacity: 1;
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      top: 0;
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 2.4rem;
+      color: #bc9cff;
+      background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      background: -moz-linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+      -moz-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    &:before {
+      content: 'star_border';
+    }
+
+    &:after {
+      content: 'star';
+      opacity: 0;
+    }
+  }
+}
