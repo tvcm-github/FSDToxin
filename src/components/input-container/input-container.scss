@@ -18,12 +18,12 @@
     font-family: 'Montserrat', Helvetica , Arial, sans-serif;
     font-size: 1.2rem;
     line-height: 1.5rem;
-    font-weight: bold;
     text-transform: uppercase;
-	  color: #1f2041;
   }
 
   &__label{
+    font-weight: bold;
+    color: #1f2041;
     flex-grow: 1;
   }
 

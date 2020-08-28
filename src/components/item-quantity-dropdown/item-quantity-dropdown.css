@@ -133,16 +133,25 @@
 }
 
 .iqdropdown .iqdropdown-item-controls button {
-  font-size: 1.8rem;
-  font-weight: normal;
-  line-height: 3rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
   height: 3rem;
   width: 3rem;
   color: rgba(31, 32, 65, 0.25);
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-radius: 50%;
 }
+
+.iqdropdown .iqdropdown-item-controls button span {
+  display: block;
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: normal;
+  text-align: center;
+}
+
 
 .iqdropdown .iqdropdown-item-controls button:hover {
   color: rgba(31, 32, 65, 0.5);

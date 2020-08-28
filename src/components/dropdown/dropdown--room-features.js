@@ -3,7 +3,7 @@ import '../item-quantity-dropdown/item-quantity-dropdown'
 $(document).ready(() => {
   $('.dropdown--room-features').iqDropdown({
     onShow(inst) {
-      inst.addClass('dropdown--active').trigger('toggleActive')
+      inst.addClass('dropdown--active').trigger('toggleActive') //toggleActive is text-field--dropdown event
     },
     onHide(inst) {
       inst.removeClass('dropdown--active').trigger('toggleActive');

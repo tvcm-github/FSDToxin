@@ -4,7 +4,7 @@
   box-sizing: border-box;
   display: block;
   cursor: pointer;
-  transition: 0.2s ease-out;
+  transition: 0.1s ease-out;
 
   &__input {
     position: absolute;
@@ -39,7 +39,7 @@
       border-radius: 50%;
       background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
       opacity: 0;
-      transition: 0.2s ease-out;
+      transition: 0.15s ease-out;
     }
   }
 

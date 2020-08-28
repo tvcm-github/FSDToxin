@@ -200,10 +200,10 @@ import './item-quantity-dropdown.css';
       function addControls (id, $item) {
         const $controls = $('<div />').addClass(settings.controls.controlsCls);
         const $decrementButton = $(`
-          <button class="button-decrement">-</button>
+          <button class="button-decrement"><span>-</span></button>
         `);
         const $incrementButton = $(`
-          <button class="button-increment">+</button>
+          <button class="button-increment"><span>+</span></button>
         `);
         $counterHtml[id] = $(`<span>${itemCount[id]}</span>`).addClass(settings.controls.counterCls);
         $controls.append($decrementButton, $counterHtml[id], $incrementButton);

@@ -12,7 +12,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       errors: false
     },
     open: true,
-    openPage: ['index.html', 'uikit/colors-and-type.html'],
+    openPage: ['index.html', 'uikit/form-elements.html'],
   },
   plugins: [
     new webpack.SourceMapDevToolPlugin({

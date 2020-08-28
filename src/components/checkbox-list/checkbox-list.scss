@@ -31,8 +31,8 @@
   }
 
   &--expandable {
-    position: relative;
     .checkbox-list__title {
+      position: relative;
       cursor: pointer;
       width: 100%;
 

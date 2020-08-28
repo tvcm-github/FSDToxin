@@ -12,6 +12,7 @@ include ../../components/radio-button/radio-button
 include ../../components/toggle-button/toggle-button
 include ../../components/like-button/like-button
 include ../../components/rate-button/rate-button
+include ../../components/range-slider/range-slider
 
 block variables
  - var title = 'Form Elements';
@@ -35,6 +36,8 @@ block main
         +toggle-button({id: 'uikit-toggle-button', name: 'uikit-toggle-button', label: 'Получать спецпредложения'})
       +uikit-elements-container({title:'Rate button'})
         +rate-button({id: 'uikit-rate-button'})
+      +range-slider({title: 'Range slider', id: 'uikit-range-slider', min: 0, max: 16000, currency: '₽'})
+      +range-slider({title: 'Range slider', id: 'uikit-range-slider-2', min: 0, max: 16000, currency: '₽'})
     .form-elements-container__column
       +input-container({label: 'Filter date dropdown', for: 'uikit-date-range'})
         +dropdown({id: 'uikit-date-range', name: 'uikit-date-range', dropdownType: 'range-date'})

@@ -44,6 +44,7 @@
       -moz-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+      transition: 0.1s ease-out;
     }
 
     &:before {
