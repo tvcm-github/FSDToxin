@@ -1,0 +1,123 @@
+.range-slider {
+  $thumb-border: 2px;
+  $thumb-size: 1.2rem;
+  box-sizing: border-box;
+  padding-bottom: calc(0.3rem + 2px);
+  width: 100%;
+  max-width: 32rem;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', Helvetica , Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-weight: bold;
+    color: #1f2041;
+  }
+
+  &__output-container {
+    color: rgba(31, 32, 65, 0.5);
+  }
+
+  &__slider {
+    --height: 0.6rem;
+    position: relative;
+    margin-top: 2rem;
+    width: 100%;
+    z-index: 1;
+    height: var(--height);
+
+    input[type=range] {
+      position: absolute;
+      margin: 0;
+      width: 100%;
+      height: 0.6rem;
+      z-index: 4;
+      appearance: none;
+      opacity: 0;
+    }
+
+    input[type=range]:focus {
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: calc(#{$thumb-size} + 2 * #{$thumb-border});
+      height: calc(#{$thumb-size} + 2 * #{$thumb-border});
+      border-radius: 0;
+      border: 0 none;
+      opacity: 0;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      -moz-appearance: none;
+      width: calc(#{$thumb-size} + 2 * #{$thumb-border});
+      height: calc(#{$thumb-size} + 2 * #{$thumb-border});
+      border-radius: 0;
+      border: 0 none;
+      opacity: 0;
+    }
+  }
+
+  &__track {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 0.3rem;
+    border: 1px solid rgba(31, 32, 65, 0.25);
+  }
+
+  &__range-wrapper {
+    position: absolute;
+    margin: auto calc((#{$thumb-size}/2) + #{$thumb-border});
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__range {
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 2;
+    left: 25%;
+    right: 25%;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+    border-radius: 0.3rem;
+  }
+
+  &__thumb {
+    $tranlationx: calc(#{$thumb-size}/2 + #{$thumb-border});
+    $tranlationy: calc(((#{$thumb-size} + 2 * #{$thumb-border}) - var(--height)) / -2);
+    position: absolute;
+    box-sizing: content-box;
+    z-index: 3;
+    width: $thumb-size;
+    height: $thumb-size;
+    border: $thumb-border solid #ffffff;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #6FCF97 0%, #66D2EA 100%);
+    transform: translateY($tranlationy);
+
+    &--left {
+      left: 25%;
+      transform: translate(calc(-1 * #{$tranlationx}), $tranlationy);
+    }
+
+    &--right {
+      right: 25%;
+      transform: translate($tranlationx, $tranlationy);
+    }
+  }
+}

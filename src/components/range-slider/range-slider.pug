@@ -1,0 +1,21 @@
+mixin range-slider(params)
+  - var valueStep = (params.max - params.min) / 100 // 1% of range
+  - var firstValue = valueStep * 25
+  - var secondValue = valueStep * 75
+
+  .range-slider
+    .range-slider__top
+      .range-slider__title!= params.title
+      .range-slider__output-container
+        output.range-slider__output-low(for=params.id +'-hidden', value=firstValue)!= firstValue
+        span!= params.currency + ' - '
+        output.range-slider__output-high(for=params.id +'-top', value=secondValue)!= secondValue
+        span!= params.currency
+    .range-slider__slider
+      input.range-slider__input-hidden(type='range', id=params.id + '-hidden', name=params.name + '-lowVal', min=params.min, max=params.max, value=firstValue)
+      input.range-slider__input-top(type='range', id=params.id + '-top', name=params.name + '-highVal', min=params.min, max=params.max, value=secondValue)
+      .range-slider__track
+      .range-slider__range-wrapper
+        .range-slider__range
+        .range-slider__thumb.range-slider__thumb--left
+        .range-slider__thumb.range-slider__thumb--right
