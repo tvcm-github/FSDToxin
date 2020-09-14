@@ -1,0 +1,41 @@
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  height: 4.4rem;
+  width: 100%;
+  font-family: 'Montserrat', Helvetica , Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  border: transparent;
+  border-radius: 2.2rem;
+  color: #ffffff;
+  background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &::after {
+    content: '\e5c8';
+    top: 0; right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+  }
+}

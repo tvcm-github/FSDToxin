@@ -1,0 +1,11 @@
+mixin link-button(params)
+  - var baseClass = 'link-button'
+  - var classes = [baseClass]
+
+  case params.theme
+    when 'primary'
+      - classes.push(baseClass + '--theme--primary')
+    when 'secondary'
+      - classes.push(baseClass + '--theme--secondary')
+
+  a(class=classes, href=params.linkTo)!= params.text
