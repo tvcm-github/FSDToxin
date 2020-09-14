@@ -12,8 +12,8 @@ mixin range-slider(params)
         output.range-slider__output-high(for=params.id +'-top', value=secondValue)!= secondValue
         span!= params.currency
     .range-slider__slider
-      input.range-slider__input-hidden(type='range', id=params.id + '-hidden', name=params.name + '-lowVal', min=params.min, max=params.max, value=firstValue)
-      input.range-slider__input-top(type='range', id=params.id + '-top', name=params.name + '-highVal', min=params.min, max=params.max, value=secondValue)
+      input.range-slider__input-hidden(type='range', id=params.id + '-hidden', name=params.name + '-lowVal', step=params.step, min=params.min, max=params.max, value=firstValue)
+      input.range-slider__input-top(type='range', id=params.id + '-top', name=params.name + '-highVal', step=params.step, min=params.min, max=params.max, value=secondValue)
       .range-slider__track
       .range-slider__range-wrapper
         .range-slider__range

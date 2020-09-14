@@ -35,6 +35,7 @@ function getFilesPaths(startPath, filter){
   return filesPathes;
 };
 
+// Adding js files of each page to entryPoints object
 Object.values(PAGES_DIR).map(dir => getFilesPaths(dir, '.js').map(function(filepath) {
   Object.assign(entryPoints, {[`${path.basename(filepath, '.js')}`] : filepath, })})),
 

@@ -5,6 +5,7 @@
   padding: 0;
 
   &__title {
+    font-family: 'Montserrat', Helvetica , Arial, sans-serif;
     font-size: 1.2rem;
     line-height: 1.5rem;
     color: rgb(31, 32, 65);
@@ -18,24 +19,24 @@
 
   &--small-gap {
     .uikit-elements-container__block {
-      display: flex;
+      display: inline-flex;
       flex-wrap: wrap;
-      margin-top: 0.6rem;
+      margin: 0.6rem 0 0 -1rem;
 
       & > * {
-        margin: 1rem 1rem 0 0;
+        margin: 1rem 0 0 1rem;
       }
     }
   }
 
   &--big-gap {
     .uikit-elements-container__block {
-      display: flex;
+      display: inline-flex;
       flex-wrap: wrap;
-      margin-top: 0.6rem;
+      margin: -1.4rem 0 0 -2rem;
 
       & > * {
-        margin: 1rem 2rem 0 0;
+        margin: 3rem 0 0 2rem;
       }
     }
   }
