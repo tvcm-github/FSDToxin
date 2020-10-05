@@ -15,6 +15,7 @@ include ../../components/rate-button/rate-button
 include ../../components/range-slider/range-slider
 include ../../components/link-button/link-button
 include ../../components/submit-button/submit-button
+include ../../components/pagination/pagination
 
 block variables
  - var title = 'Form Elements';
@@ -71,3 +72,5 @@ block main
         +link-button({text: 'Click me', linkTo: '#', theme: 'primary'})
         +link-button({text: 'Click me', linkTo: '#', theme: 'secondary'})
         +submit-button('Перейти к оплате')
+      +uikit-elements-container({title: 'Pagination'})
+        +pagination()
