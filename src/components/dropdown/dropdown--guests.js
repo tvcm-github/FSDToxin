@@ -1,4 +1,4 @@
-import '../item-quantity-dropdown/item-quantity-dropdown'
+import '../../plugins/item-quantity-dropdown/item-quantity-dropdown'
 
 $(document).ready(() => {
   $('.dropdown--guests').iqDropdown({

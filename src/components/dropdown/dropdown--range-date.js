@@ -1,4 +1,4 @@
-import '../datepicker/datepicker'
+import '../../plugins/datepicker/datepicker'
 
 $(document).ready(function(){
   var $this = $('.dropdown--range-date').children('input');
