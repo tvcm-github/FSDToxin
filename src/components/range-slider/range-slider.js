@@ -19,7 +19,8 @@ sliders.forEach(slider => {
       moveLeft = false;
 
   function passClick(e) {
-    let clickPercentPoint = (e.offsetX / this.offsetWidth) * 100;
+    let offsetXpoint = e.touches ? e.targetTouches[0].clientX - e.target.getBoundingClientRect().x : e.offsetX
+    let clickPercentPoint = (offsetXpoint / this.offsetWidth) * 100;
     let thumbsMiddlePercent = ((100 - rightThumbPos - leftThumbPos) / 2) + leftThumbPos;
 
     if (clickPercentPoint < thumbsMiddlePercent) {
@@ -61,7 +62,7 @@ sliders.forEach(slider => {
   function thumbRightPercentPos(value) {
     return (max - value) / (max - min) * 100;
   }
-
+  inputTop.addEventListener('touchstart', passClick);
   inputTop.addEventListener('mousedown', passClick); //Event listener for an overlapping item
   inputTop.addEventListener('input', update);
 })
