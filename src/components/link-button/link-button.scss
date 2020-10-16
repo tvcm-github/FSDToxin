@@ -4,10 +4,10 @@
   justify-content: center;
   box-sizing: border-box;
   height: 4.4rem;
-  width: 9.9rem;
+  padding: 0 2rem;
   border-radius: 2.2rem;
   font-family: 'Montserrat', Helvetica , Arial, sans-serif;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 1.2rem;
   line-height: 1.5rem;
   text-transform: uppercase;
@@ -26,6 +26,7 @@
 
     &--secondary {
       $border: 2px;
+      padding: calc(1.4rem - #{$border}) calc(2rem - #{$border}) calc(1.5rem - #{$border});
       color: #BC9CFF;
       position: relative;
       background: #ffffff;
@@ -51,5 +52,9 @@
         background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
       }
     }
+  }
+
+  &--nav-link {
+    height: 3.4rem;
   }
 }

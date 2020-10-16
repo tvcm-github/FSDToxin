@@ -8,4 +8,7 @@ mixin link-button(params)
     when 'secondary'
       - classes.push(baseClass + '--theme--secondary')
 
+  if params.navLink
+    - classes.push(baseClass + '--nav-link')
+
   a(class=classes, href=params.linkTo)!= params.text

@@ -69,8 +69,9 @@ block main
         +like-button(12)
     .form-elements-container__column
       +uikit-elements-container({title: 'Buttons', gap: 'big'})
-        +link-button({text: 'Click me', linkTo: '#', theme: 'primary'})
-        +link-button({text: 'Click me', linkTo: '#', theme: 'secondary'})
         +submit-button('Перейти к оплате')
+        +link-button({text: 'Click me', linkTo: '#', theme: 'primary'})
+        +link-button({text: 'Войти', linkTo: '#', theme: 'secondary'})
+        +link-button({text: 'Зарегистрироваться', linkTo: '#', theme: 'primary', navLink: true})
       +uikit-elements-container({title: 'Pagination'})
         +pagination()
