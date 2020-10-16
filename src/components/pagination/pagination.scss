@@ -61,3 +61,10 @@
     margin-top: 1rem;
   }
 }
+
+@media (max-width: 480px) {
+  .pagination__link {
+    width: 3rem;
+    height: 3rem;
+  }
+}
