@@ -16,6 +16,7 @@ include ../../components/range-slider/range-slider
 include ../../components/link-button/link-button
 include ../../components/submit-button/submit-button
 include ../../components/pagination/pagination
+include ../../components/features-list/features-list
 
 block variables
  - var title = 'Form Elements';
@@ -75,3 +76,7 @@ block main
         +link-button({text: 'Зарегистрироваться', linkTo: '#', theme: 'primary', navLink: true})
       +uikit-elements-container({title: 'Pagination'})
         +pagination()
+        +features-list([
+          {icon: 'insert_emoticon', title: 'Комфорт', descr: 'Шумопоглощающие стены'},
+          {icon: 'location_city', title: 'Удобство', descr: 'Окно в каждой из спален'}
+        ])

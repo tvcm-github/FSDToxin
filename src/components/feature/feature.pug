@@ -1,0 +1,9 @@
+mixin feature(params)
+
+  .feature
+    .feature__logo
+      i.material-icons.feature__icon!= params.icon
+    .feature__info
+      h3.feature__title!= params.title
+      p.feature__descr!= params.descr
+

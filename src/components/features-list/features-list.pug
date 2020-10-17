@@ -1,0 +1,8 @@
+include ../feature/feature
+
+mixin features-list(items)
+
+  ul.features-list
+    each item in items
+      li.features-list__item
+        +feature(item)
