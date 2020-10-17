@@ -9,8 +9,8 @@ mixin color-block(params)
     .color-block__tile(style='background-color: ' + resultColor)
     .color-block__info
       if (params.opacity)
-        h2.color-block__title= params.title + ' ' + (params.opacity * 100).toString() + '%'
+        h3.color-block__title= params.title + ' ' + (params.opacity * 100).toString() + '%'
       else
-        h2.color-block__title= params.title
+        h3.color-block__title= params.title
       p.color-block__code= params.hexcode
 
