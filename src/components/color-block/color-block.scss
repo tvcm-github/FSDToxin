@@ -29,4 +29,10 @@
     text-transform: uppercase;
     margin: 0;
   }
+
+  @media (max-width: 768px) {
+    &__info {
+      margin-left: 3rem;
+    }
+  }
 }

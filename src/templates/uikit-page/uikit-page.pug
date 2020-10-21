@@ -11,8 +11,8 @@ html(lang='en')
     title #{title}
 
   body(class='uikit-page')
-    block header
-      .uikit-page__logo
-        +toxin-icon({})
-    block main
+    .uikit-page__logo
+      +toxin-icon({})
+    main.uikit-page__main
+      block main
 
