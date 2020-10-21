@@ -1,22 +1,23 @@
-extends ../../templates/uikit-page/uikit-page
-include ../../components/text-field/text-field
-include ../../components/subscription-form/subscription-form
-include ../../components/dropdown/dropdown
-include ../../components/input-container/input-container
-include ../../components/uikit-elements-container/uikit-elements-container
-include ../../components/dates-block/dates-block
-include ../../components/checkbox/checkbox
-include ../../components/checkbox-list/checkbox-list
-include ../../components/bullet-list/bullet-list
-include ../../components/radio-button/radio-button
-include ../../components/toggle-button/toggle-button
-include ../../components/like-button/like-button
-include ../../components/rate-button/rate-button
-include ../../components/range-slider/range-slider
-include ../../components/link-button/link-button
-include ../../components/submit-button/submit-button
-include ../../components/pagination/pagination
-include ../../components/features-list/features-list
+extends ../../../templates/uikit-page/uikit-page
+include ../../../components/text-field/text-field
+include ../../../components/subscription-form/subscription-form
+include ../../../components/dropdown/dropdown
+include ../../../components/input-container/input-container
+include ../../../components/uikit-elements-container/uikit-elements-container
+include ../../../components/dates-block/dates-block
+include ../../../components/checkbox/checkbox
+include ../../../components/checkbox-list/checkbox-list
+include ../../../components/bullet-list/bullet-list
+include ../../../components/radio-button/radio-button
+include ../../../components/toggle-button/toggle-button
+include ../../../components/like-button/like-button
+include ../../../components/rate-button/rate-button
+include ../../../components/range-slider/range-slider
+include ../../../components/link-button/link-button
+include ../../../components/submit-button/submit-button
+include ../../../components/pagination/pagination
+include ../../../components/features-list/features-list
+include ../../../components/guest-review/guest-review
 
 block variables
  - var title = 'Form Elements';
@@ -80,3 +81,5 @@ block main
           {icon: 'insert_emoticon', title: 'Комфорт', descr: 'Шумопоглощающие стены'},
           {icon: 'location_city', title: 'Удобство', descr: 'Окно в каждой из спален'}
         ])
+        +guest-review({avatar: 'murad-ava.png', name: 'Мурад Сарафанов', date: '5 дней назад', likes: 12, text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'})
+

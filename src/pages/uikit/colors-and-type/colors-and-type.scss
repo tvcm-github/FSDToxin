@@ -1,0 +1,40 @@
+.colors-and-type {
+  display: flex;
+  justify-content: space-around;
+  margin: 14.5rem 0;
+
+  &__colors {
+    display: grid;
+    grid-gap: 2rem;
+  }
+
+  &__type {
+    max-width: 40.5rem;
+  }
+
+  &__type-item {
+    &:not(:nth-child(1)) {
+      margin-top: 5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    &__colors {
+      align-self: stretch;
+      justify-content: center;
+      grid-template-columns: repeat(auto-fill, 260px);
+    }
+
+    &__type {
+      margin-top: 6rem;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin: 12rem 0;
+  }
+}

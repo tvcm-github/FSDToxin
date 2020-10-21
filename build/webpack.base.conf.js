@@ -11,10 +11,7 @@ const PATHS = {
   assets: 'assets/'
 }
 
-const PAGES_DIR = {
-  pages: `${PATHS.src}/pages/`,
-  uikit: `${PATHS.src}/uikit/`
-}
+const PAGES_DIR = `${PATHS.src}/pages/`
 
 const entryPoints = {common: `${PATHS.src}/common.js`}
 
@@ -36,8 +33,8 @@ function getFilesPaths(startPath, filter){
 };
 
 // Adding js files of each page to entryPoints object
-Object.values(PAGES_DIR).map(dir => getFilesPaths(dir, '.js').map(function(filepath) {
-  Object.assign(entryPoints, {[`${path.basename(filepath, '.js')}`] : filepath, })})),
+getFilesPaths(PAGES_DIR, '.js').forEach(function(filepath) {
+  Object.assign(entryPoints, {[`${path.basename(filepath, '.js')}`] : filepath, })})
 
 module.exports = {
   externals: {
@@ -68,7 +65,7 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: `${PATHS.assets}img/[name].[ext]`,
-          publicPath: `../../`
+          publicPath: `./`
         },
       },
       {
@@ -111,15 +108,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].css`,
     }),
-    ...getFilesPaths(PAGES_DIR.pages, '.pug').map(page => new HtmlWebpackPlugin({
+    ...getFilesPaths(PAGES_DIR, '.pug').map(page => new HtmlWebpackPlugin({
       chunks: ['common', path.basename(page, '.pug')],
       template: page,
       filename: `./${path.basename(page).replace(/\.pug/,'.html')}`
-    })),
-    ...getFilesPaths(PAGES_DIR.uikit, '.pug').map(page => new HtmlWebpackPlugin({
-      chunks: ['common', path.basename(page, '.pug')],
-      template: page,
-      filename: `./uikit/${path.basename(page).replace(/\.pug/,'.html')}`
     })),
     new webpack.ProvidePlugin({
       $: 'jquery',

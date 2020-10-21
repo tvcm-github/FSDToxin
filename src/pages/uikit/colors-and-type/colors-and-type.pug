@@ -1,0 +1,33 @@
+extends ../../../templates/uikit-page/uikit-page
+include ../../../components/color-block/color-block
+include ../../../components/labeled-type/labeled-type
+
+block variables
+ - var title = 'Colors and type';
+
+block main
+  .colors-and-type
+    section.colors-and-type__colors
+      .colors-and-type__color-item
+        +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 1})
+      .colors-and-type__color-item
+        +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.75})
+      .colors-and-type__color-item
+        +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.5})
+      .colors-and-type__color-item
+        +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.25})
+      .colors-and-type__color-item
+        +color-block({title: 'Dark Shade', hexcode: '#1f2041', opacity: 0.05})
+      .colors-and-type__color-item
+        +color-block({title: 'Purple', hexcode: '#bc9cff'})
+      .colors-and-type__color-item
+        +color-block({title: 'Green', hexcode: '#6fcf97'})
+    section.colors-and-type__type
+      .colors-and-type__type-item
+        +labeled-type('H1', 'This one is the sub-section or widget title').title
+      .colors-and-type__type-item
+        +labeled-type('H2', 'Next one is the item title inside widgets').item-title
+      .colors-and-type__type-item
+        +labeled-type('H3', 'This is a label or CTA text').label-or-cta
+      .colors-and-type__type-item
+        +labeled-type('Body', 'This is the body text which is used for most  <span class="nowrap">of the</span> design, like paragraphs, lists, etc.')
