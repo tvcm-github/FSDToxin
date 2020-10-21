@@ -1,0 +1,43 @@
+.guest-review {
+  position: relative;
+  padding-left: 5.8rem;
+  &__avatar,
+  &__likes {
+    position: absolute;
+  }
+
+  &__avatar {
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: 4.8rem;
+    height: 4.8rem;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.1);
+  }
+
+  &__likes {
+    top: 6rem;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 4.8rem;
+  }
+
+  &__name,
+  &__date {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+  }
+
+  &__name {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  &__text {
+    margin: 0;
+    margin-top: 10px;
+  }
+}

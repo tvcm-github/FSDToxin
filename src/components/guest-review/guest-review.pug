@@ -1,0 +1,10 @@
+include ../like-button/like-button
+
+mixin guest-review(params)
+  article.guest-review
+    img.guest-review__avatar(src=require('../../../assets/img/' + params.avatar), alt=params.name)
+    h3.guest-review__name!= params.name
+    time.guest-review__date(datetime='2015-05-17 19:00')!=params.date
+    p.guest-review__text!=params.text
+    .guest-review__likes
+      +like-button(params.likes)
