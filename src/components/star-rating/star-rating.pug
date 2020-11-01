@@ -1,0 +1,9 @@
+mixin star-rating(rating)
+  - var n = 1;
+  .star-rating
+      while n <= rating
+        span.star-rating__star!= 'star'
+        - n++
+      while n <= 5
+        span.star-rating__star!= 'star_border'
+        - n++
