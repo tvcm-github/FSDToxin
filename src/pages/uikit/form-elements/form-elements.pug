@@ -18,68 +18,92 @@ include ../../../components/submit-button/submit-button
 include ../../../components/pagination/pagination
 include ../../../components/features-list/features-list
 include ../../../components/guest-review/guest-review
+include ../../../components/star-rating/star-rating
 
 block variables
  - var title = 'Form Elements';
 
 block main
-  .form-elements-container
-    .form-elements-container__column
-      +input-container({label: 'Text field', tip: 'Default', for: 'uikit-text-default'})
-        +text-field({type: 'email', id: 'uikit-text-default', placeholder: 'Email', name: 'uikit-email', rq: true, autocomplete: 'on'})
-      +input-container({label: 'Text field', tip: 'Hover / Focus',  for: 'uikit-text-hovfocus'})
-        +text-field({type: 'text', id: 'uikit-text-hovfocus', name: 'uikit-focused-textfield', value: 'This is pretty awesome', focusedView: true, rq: true})
-      +input-container({label: 'Dropdown', tip: 'Default', for: 'uikit-iqdropdown-guests'})
-        +dropdown({id: 'uikit-iqdropdown-guests', name: 'uikit-dropdown-guests', dropdownType: 'guests'})
-      +input-container({label: 'Masked text field', tip: 'Default', for: 'uikit-text-masked'})
-        +text-field({id: 'uikit-text-masked', name: 'uikit-masked-textfield', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
-      +dates-block({uikitBlockLabels: 'Date dropdown', idBase: 'uikit-dates-block'})
-      +uikit-elements-container({title: 'Radio buttons', gap: 'big'})
-        +radio-button({id: 'uikit-genderpick-male', label: 'Мужчина', name: 'uikit-genderpick', value: 'male'})
-        +radio-button({id: 'uikit-genderpick-female', label: 'Женщина', name: 'uikit-genderpick', value: 'female'})
-      +uikit-elements-container({title:'Toggle'})
-        +toggle-button({id: 'uikit-toggle-button', name: 'uikit-toggle-button', label: 'Получать спецпредложения'})
-      +uikit-elements-container({title:'Rate button'})
-        +rate-button({id: 'uikit-rate-button'})
-      +range-slider({title: 'Range slider', id: 'uikit-range-slider', name: 'range1', step: 200, min: 0, max: 16000, currency: '₽'})
-      +range-slider({title: 'Range slider', id: 'uikit-range-slider-2', name: 'range2', step: 1000, min: 0, max: 16000, currency: '₽'})
-    .form-elements-container__column
-      +input-container({label: 'Filter date dropdown', for: 'uikit-date-range'})
-        +dropdown({id: 'uikit-date-range', name: 'uikit-date-range', dropdownType: 'range-date'})
-      +input-container({label: 'Subscription text field', for: 'uikit-subscription'})
-        +subscription-form({id: 'uikit-subscription', name: 'uikit-subscription', placeholder: 'Email'})
-      +input-container({label: 'Dropdown', for: 'uikit-iqdropdown-room-features'})
-        +dropdown({id: 'uikit-iqdropdown-room-features', name: 'uikit-room-features', dropdownType: 'room-features'})
-      +checkbox-list({id: 'uikit-rich-cb-btns', title: 'Rich checkbox buttons', items: [
-        {label: 'Широкий коридор', name: 'uikit-cb-wide-corridor', desc: 'Ширина коридоров в номере <span class="nowrap">не менее 91 см.</span>'},
-        {label: 'Помощник для инвалидов', name: 'uikit-cb-invalid-helper',  desc: 'На 1 этаже вас встретит специалист <span class="nowrap">и проводит</span> до номера'}]})
-      +checkbox-list({id: 'uikit-cb-btns', title: 'Checkbox buttons', items: [
-        {label: 'Можно курить', name: 'uikit-cb-smoking-allowed'},
-        {label: 'Можно с питомцами', name: 'uikit-cb-pets-allowed'},
-        {label: 'Можно пригласить гостей <span class="nowrap">(до 10 человек)</span>', name: 'uikit-cb-guests-allowed'}]})
-      +checkbox-list({id: 'uikit-expandable-cb-list', title: 'Expandable checkbox list', expandable: true, items: [
-        {label: 'Завтрак', name: 'uikit-cb-breakfast'},
-        {label: 'Письменный стол', name: 'uikit-cb-desk'},
-        {label: 'Стул для кормления', name: 'uikit-cb-feeding-chair'},
-        {label: 'Кроватка', name: 'uikit-cb-crib'},
-        {label: 'Телевизор', name: 'uikit-cb-tv'},
-        {label: 'Шампунь', name: 'uikit-cb-shampoo'}]})
-      +uikit-elements-container({title: 'Bullet list'})
-        +bullet-list({items: ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, <span class="nowrap">а выезд</span> до 12:00']})
-      +uikit-elements-container({title:'Like button', gap: 'small'})
-        +like-button(2)
-        +like-button(12)
-    .form-elements-container__column
-      +uikit-elements-container({title: 'Buttons', gap: 'big'})
-        +submit-button('Перейти к оплате')
-        +link-button({text: 'Click me', linkTo: '#', theme: 'primary'})
-        +link-button({text: 'Войти', linkTo: '#', theme: 'secondary'})
-        +link-button({text: 'Зарегистрироваться', linkTo: '#', theme: 'primary', navLink: true})
-      +uikit-elements-container({title: 'Pagination'})
-        +pagination()
-        +features-list([
-          {icon: 'insert_emoticon', title: 'Комфорт', descr: 'Шумопоглощающие стены'},
-          {icon: 'location_city', title: 'Удобство', descr: 'Окно в каждой из спален'}
-        ])
-        +guest-review({avatar: 'murad-ava.png', name: 'Мурад Сарафанов', date: '5 дней назад', likes: 12, text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'})
-
+  .form-elements
+    .form-elements__column
+      .form-elements__el.form-elements__el--low-margin
+        +input-container({label: 'Text field', tip: 'Default', for: 'uikit-text-default'})
+          +text-field({type: 'email', id: 'uikit-text-default', placeholder: 'Email', name: 'uikit-email', rq: true, autocomplete: 'on'})
+      .form-elements__el.form-elements__el--low-margin
+        +input-container({label: 'Text field', tip: 'Hover / Focus',  for: 'uikit-text-hovfocus'})
+          +text-field({type: 'text', id: 'uikit-text-hovfocus', name: 'uikit-focused-textfield', value: 'This is pretty awesome', focusedView: true, rq: true})
+      .form-elements__el.form-elements__el--low-margin
+        +input-container({label: 'Dropdown', tip: 'Default', for: 'uikit-iqdropdown-guests'})
+          +dropdown({id: 'uikit-iqdropdown-guests', name: 'uikit-dropdown-guests', dropdownType: 'guests'})
+      .form-elements__el.form-elements__el--low-margin
+        +input-container({label: 'Masked text field', tip: 'Default', for: 'uikit-text-masked'})
+          +text-field({id: 'uikit-text-masked', name: 'uikit-masked-textfield', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
+      .form-elements__el
+        +dates-block({uikitBlockLabels: 'Date dropdown', idBase: 'uikit-dates-block'})
+    .form-elements__column
+      .form-elements__el.form-elements__el--narrow
+        +checkbox-list({id: 'uikit-cb-btns', title: 'Checkbox buttons', items: [
+          {label: 'Можно курить', name: 'uikit-cb-smoking-allowed'},
+          {label: 'Можно с питомцами', name: 'uikit-cb-pets-allowed'},
+          {label: 'Можно пригласить гостей <span class="nowrap">(до 10 человек)</span>', name: 'uikit-cb-guests-allowed'}]})
+      .form-elements__el.form-elements__el--narrow
+        +uikit-elements-container({title: 'Radio buttons', gap: 'big'})
+          +radio-button({id: 'uikit-genderpick-male', label: 'Мужчина', name: 'uikit-genderpick', value: 'male'})
+          +radio-button({id: 'uikit-genderpick-female', label: 'Женщина', name: 'uikit-genderpick', value: 'female'})
+      .form-elements__el.form-elements__el--narrow
+        +uikit-elements-container({title:'Toggle'})
+          +toggle-button({id: 'uikit-toggle-button', name: 'uikit-toggle-button', label: 'Получать спецпредложения'})
+      .form-elements__el.form-elements__el--narrow
+        +uikit-elements-container({title:'Like button', gap: 'small'})
+          +like-button(2)
+          +like-button(12)
+      .form-elements__el.form-elements__el--narrow
+        +uikit-elements-container({title:'Rate button & rating', gap: 'big'})
+          +rate-button({id: 'uikit-rate-button'})
+          +star-rating(4)
+    .form-elements__column
+      .form-elements__el
+        +uikit-elements-container({title: 'Buttons', gap: 'big'})
+          +submit-button('Перейти к оплате')
+          +link-button({text: 'Click me', linkTo: '#', theme: 'primary'})
+          +link-button({text: 'Войти', linkTo: '#', theme: 'secondary'})
+          +link-button({text: 'Зарегистрироваться', linkTo: '#', theme: 'primary', navLink: true})
+      .form-elements__el.form-elements__el--narrow
+        +uikit-elements-container({title: 'Pagination'})
+          +pagination()
+      .form-elements__el.form-elements__el--narrow
+        +range-slider({title: 'Range slider', id: 'uikit-range-slider', name: 'range1', step: 200, min: 0, max: 16000, currency: '₽'})
+    .form-elements__column
+      .form-elements__el.form-elements__el--narrow
+        +input-container({label: 'Filter date dropdown', for: 'uikit-date-range'})
+          +dropdown({id: 'uikit-date-range', name: 'uikit-date-range', dropdownType: 'range-date'})
+      .form-elements__el.form-elements__el--narrow
+        +input-container({label: 'Subscription text field', for: 'uikit-subscription'})
+          +subscription-form({id: 'uikit-subscription', name: 'uikit-subscription', placeholder: 'Email'})
+      .form-elements__el.form-elements__el--narrow
+        +input-container({label: 'Dropdown', for: 'uikit-iqdropdown-room-features'})
+          +dropdown({id: 'uikit-iqdropdown-room-features', name: 'uikit-room-features', dropdownType: 'room-features'})
+    .form-elements__column
+      .form-elements__el.form-elements__el--narrow
+        +checkbox-list({id: 'uikit-expandable-cb-list', title: 'Expandable checkbox list', expandable: true, items: [
+          {label: 'Завтрак', name: 'uikit-cb-breakfast'},
+          {label: 'Письменный стол', name: 'uikit-cb-desk'},
+          {label: 'Стул для кормления', name: 'uikit-cb-feeding-chair'},
+          {label: 'Кроватка', name: 'uikit-cb-crib'},
+          {label: 'Телевизор', name: 'uikit-cb-tv'},
+          {label: 'Шампунь', name: 'uikit-cb-shampoo'}]})
+    .form-elements__column
+      .form-elements__el.form-elements__el--narrow
+        +checkbox-list({id: 'uikit-rich-cb-btns', title: 'Rich checkbox buttons', items: [
+          {label: 'Широкий коридор', name: 'uikit-cb-wide-corridor', desc: 'Ширина коридоров в номере <span class="nowrap">не менее 91 см.</span>'},
+          {label: 'Помощник для инвалидов', name: 'uikit-cb-invalid-helper',  desc: 'На 1 этаже вас встретит специалист <span class="nowrap">и проводит</span> до номера'}]})
+      .form-elements__el.form-elements__el--narrow
+        +uikit-elements-container({title: 'Bullet list'})
+          +bullet-list({items: ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, <span class="nowrap">а выезд</span> до 12:00']})
+    .form-elements__column
+      +features-list([
+        {icon: 'insert_emoticon', title: 'Комфорт', descr: 'Шумопоглощающие стены'},
+        {icon: 'location_city', title: 'Удобство', descr: 'Окно в каждой из спален'}
+      ])
+    .form-elements__column
+      +guest-review({avatar: require('../../../assets/img/murad-ava.png'), name: 'Мурад Сарафанов', date: '5 дней назад', likes: 12, text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. <span class="nowrap">И стены</span>, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'})
