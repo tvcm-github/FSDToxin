@@ -21,7 +21,7 @@ include ../../../components/guest-review/guest-review
 include ../../../components/star-rating/star-rating
 
 block variables
- - var title = 'Form Elements';
+  - var title = 'Form Elements';
 
 block main
   .form-elements
@@ -68,7 +68,7 @@ block main
           +link-button({text: 'Click me', linkTo: '#', theme: 'primary'})
           +link-button({text: 'Войти', linkTo: '#', theme: 'secondary'})
           +link-button({text: 'Зарегистрироваться', linkTo: '#', theme: 'primary', navLink: true})
-      .form-elements__el.form-elements__el--narrow
+      .form-elements__el
         +uikit-elements-container({title: 'Pagination'})
           +pagination()
       .form-elements__el.form-elements__el--narrow
