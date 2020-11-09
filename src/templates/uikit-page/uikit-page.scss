@@ -1,5 +1,10 @@
 .uikit-page {
 
+
+  &--dark-bg {
+    background-color: #F4F4F6;
+  }
+
   &__logo {
     position:absolute;
     top: 3rem;

@@ -2,6 +2,10 @@ include ../../components/toxin-icon/toxin-icon
 
 block variables
 
+- var classes = ['uikit-page']
+if (darkBg)
+  - classes.push('uikit-page--dark-bg')
+
 doctype html
 html(lang='en')
   head
@@ -10,7 +14,7 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
     title #{title}
 
-  body(class='uikit-page')
+  body(class=classes)
     .uikit-page__logo
       +toxin-icon({})
     main.uikit-page__main
