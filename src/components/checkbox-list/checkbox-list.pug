@@ -10,7 +10,7 @@ mixin checkbox-list(params)
 
   fieldset(class=classes)
     legend.checkbox-list__title!= params.title
-    ul
+    ul.checkbox-list__container
       each checkbox in params.items
         li.checkbox-list__item
           +checkbox({id: params.id + '-item-' + i++, label: checkbox.label, name: checkbox.name, checked: checkbox.checked, desc: checkbox.desc})

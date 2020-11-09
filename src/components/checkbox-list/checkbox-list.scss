@@ -6,7 +6,7 @@
   max-width: 32rem;
   min-width: 26.6rem;
 
-  ul {
+  &__container {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -55,7 +55,7 @@
       }
     }
 
-    ul {
+    .checkbox-list__container {
       transform: scaleY(0);
       margin-top: 0;
     }
@@ -70,7 +70,7 @@
       transform: rotate(-180deg);
     }
 
-    ul {
+    .checkbox-list__container {
       transform: scaleY(1);
       margin-top: 1.6rem;
     }
