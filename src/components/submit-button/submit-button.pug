@@ -1,2 +1,5 @@
-mixin submit-button(value)
-  button.submit-button(type='submit')!= value
+//- Using example: +submit-button('button text')
+//- Use the button inside a form element to submit the form
+
+mixin submit-button(text)
+  button.submit-button(type='submit')!= text

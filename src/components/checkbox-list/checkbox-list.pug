@@ -1,8 +1,11 @@
 include ../checkbox/checkbox
 include ../toggle-button/toggle-button
 
+//- Using example: +checkbox-list({id: 'idPrefix', title: 'List title', items: [
+  {label: 'cb-label', name: 'cb-name', checked: boolean(optional), desc: 'description'(optional)}
+//- ]})
+
 mixin checkbox-list(params)
-  - var i = 0
   - var classes = ['checkbox-list']
 
   if params.expandable
@@ -13,4 +16,4 @@ mixin checkbox-list(params)
     ul.checkbox-list__container
       each checkbox in params.items
         li.checkbox-list__item
-          +checkbox({id: params.id + '-item-' + i++, label: checkbox.label, name: checkbox.name, checked: checkbox.checked, desc: checkbox.desc})
+          +checkbox({id: params.id + `-${checkbox.name}`, label: checkbox.label, name: checkbox.name, checked: checkbox.checked, desc: checkbox.desc})

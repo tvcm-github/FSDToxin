@@ -1,3 +1,5 @@
+//- Using example: +link-button({text: 'Button text', linkTo: 'Link directs to', theme: 'primary/secondary'})
+
 mixin link-button(params)
   - var baseClass = 'link-button'
   - var classes = [baseClass]
@@ -8,7 +10,7 @@ mixin link-button(params)
     when 'secondary'
       - classes.push(baseClass + '--theme--secondary')
 
-  if params.navLink
-    - classes.push(baseClass + '--nav-link')
+  if params.narrow
+    - classes.push(baseClass + '--narrow')
 
   a(class=classes, href=params.linkTo)!= params.text

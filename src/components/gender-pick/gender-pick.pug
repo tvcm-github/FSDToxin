@@ -1,0 +1,10 @@
+include ../radio-button/radio-button
+
+//- Using example: +gender-pick('uikit-genderpick')
+
+mixin gender-pick(name)
+  .gender-pick
+    .gender-pick__el
+      +radio-button({id: name + '-male', label: 'Мужчина', name: name, value: 'male'})
+    .gender-pick__el
+      +radio-button({id: name + '-female', label: 'Женщина', name: name, value: 'female'})

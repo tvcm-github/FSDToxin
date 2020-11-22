@@ -1,0 +1,7 @@
+.gender-pick {
+  display: flex;
+
+  &__el:nth-child(1) {
+    margin-right: 2rem;
+  }
+}

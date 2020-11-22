@@ -1,5 +1,7 @@
-mixin bullet-list(params)
+//- Using example: +bullet-list(['Item1', 'Item2', 'Item3'])
+
+mixin bullet-list(items)
 
   ul.bullet-list
-    each item in params.items
+    each item in items
       li.bullet-list__item!= item

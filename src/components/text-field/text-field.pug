@@ -1,3 +1,5 @@
+//- Using example: +text-field({type: 'text', id: 'text-field-id', placeholder: 'placeholder', name: 'name', value: 'Input value'(optioal), mask: 'mask-type'(optional), dropdown: boolean(for dd fields, optional), rightSpace: boolean(for fields with rightspace buttons, optional) ro: boolean(readonly, optional), rq: boolean(required, optional), autocomplete: boolean(optional)})
+
 mixin text-field(params)
   - var baseClass = 'text-field'
   - var classes = [baseClass]
@@ -8,8 +10,6 @@ mixin text-field(params)
     - type = params.type
   if (params.rightSpace)
     - classes.push(baseClass + '--right-space')
-  if (params.focusedView)
-    - classes.push(baseClass + '--focused')
   if (params.dropdown)
     - classes.push(baseClass + '--dropdown')
   if(params.mask)

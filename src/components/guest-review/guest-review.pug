@@ -1,9 +1,11 @@
 include ../like-button/like-button
 
+//- Using example: +guest-review({avatar: require('relative path'), guestName: 'name', date: 'date as text', likes: number, text: 'review text'})
+
 mixin guest-review(params)
   article.guest-review
-    img.guest-review__avatar(src=params.avatar, alt=params.name)
-    h3.guest-review__name!= params.name
+    img.guest-review__avatar(src=params.avatar, alt=params.guestName)
+    h3.guest-review__name!= params.guestName
     time.guest-review__date(datetime='2015-05-17 19:00')!=params.date
     p.guest-review__text!=params.text
     .guest-review__likes

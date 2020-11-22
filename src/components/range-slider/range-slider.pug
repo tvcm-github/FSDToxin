@@ -1,3 +1,5 @@
+//- Using example: +range-slider({title: 'Range title', id: 'range-slider-id', name: 'range-slider-name',step: number, min: number, max: number, currency: '₽'})
+
 mixin range-slider(params)
   - var valueStep = (params.max - params.min) / 100 // 1% of range
   - var firstValue = valueStep * 25
