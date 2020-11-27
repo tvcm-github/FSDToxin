@@ -1,0 +1,37 @@
+extends ../../templates/form-card/form-card
+include ../../components/text-field/text-field
+include ../../components/gender-pick/gender-pick
+include ../../components/input-container/input-container
+include ../../components/toggle-button/toggle-button
+include ../../components/submit-button/submit-button
+include ../../components/link-button/link-button
+
+block variables
+  - var formTitle = 'Регистрация аккаунта'
+  - var formName = 'sign-up-form'
+  - var formAction = 'URL'
+block main
+  .form-card__section
+    .form-card__field
+      +text-field({type: 'text', id: 'sign-up-form__name', placeholder: 'Имя', name: 'name', rq: true, autocomplete: true})
+    .form-card__field
+      +text-field({type: 'text', id: 'sign-up-form__surname', placeholder: 'Фамилия', name: 'surname', rq: true, autocomplete: true})
+    .form-card__field
+      +gender-pick('sign-up-form__genderpick')
+  .form-card__section
+    +input-container({label: 'Дата рождения', for: 'sign-up-form__birthday'})
+      +text-field({type: 'text', id: 'sign-up-form__birthday', placeholder: 'ДД.ММ.ГГГГ', name: 'birthday', mask: 'birthday-mask', rq: true, autocomplete: true})
+  .form-card__section
+    .form-card__field
+      +input-container({label: 'Данные для входа в сервис', for: 'sign-up-form__email'})
+        +text-field({type: 'email', id: 'sign-up-form__email', placeholder: 'Email', name: 'email', rq: true, autocomplete: true})
+    .form-card__field
+      +text-field({type: 'password', id: 'sign-up-form__password', placeholder: 'Пароль', name: 'password', rq: true, autocomplete: true})
+    .form-card__field
+      +toggle-button({id: 'sign-up-form__offers', name: 'special-offers', label: 'Получать спецпредложения'})
+  .form-card__section
+    +submit-button('Перейти к оплате')
+  .form-card__footer
+    p.form-card__redirect-label Уже есть аккаунт на Toxin
+    .form-card__redirect-button
+      +link-button({text: 'Войти', linkTo: 'javascript:void(0)', theme: 'secondary'})

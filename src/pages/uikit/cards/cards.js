@@ -1,3 +1,4 @@
 import '../../../plugins/datepicker/datepicker'
-import '../../../components/sch-room-form/sch-room-form'
+import '../../../forms/sch-room-form/sch-room-form'
+import '../../../forms/sign-up-form/sign-up-form'
 import './cards.scss'
