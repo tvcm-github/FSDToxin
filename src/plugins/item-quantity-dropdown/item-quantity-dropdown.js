@@ -200,10 +200,10 @@ import './item-quantity-dropdown.css';
       function addControls (id, $item) {
         const $controls = $('<div />').addClass(settings.controls.controlsCls);
         const $decrementButton = $(`
-          <button class="button-decrement"><span>-</span></button>
+          <button type="button" class="button-decrement"><span>-</span></button>
         `);
         const $incrementButton = $(`
-          <button class="button-increment"><span>+</span></button>
+          <button type="button" class="button-increment"><span>+</span></button>
         `);
         $counterHtml[id] = $(`<span>${itemCount[id]}</span>`).addClass(settings.controls.counterCls);
         $controls.append($decrementButton, $counterHtml[id], $incrementButton);
@@ -285,7 +285,7 @@ import './item-quantity-dropdown.css';
       function addButtons() {
           var $buttonsContainer = $('<div class="iqdropdown-buttons"></div>').appendTo($menu);
           settings.buttons.forEach(function(button) {
-            $buttons[button.action] = $(`<button class="iqdropdown-button" data-action="${button.action}">${button.text}</button>`).appendTo($buttonsContainer)
+            $buttons[button.action] = $(`<button type="button" class="iqdropdown-button" data-action="${button.action}">${button.text}</button>`).appendTo($buttonsContainer)
             $buttons[button.action].on('click', _onButtonClick.bind(this))
           })
       }
