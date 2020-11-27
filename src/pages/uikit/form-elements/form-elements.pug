@@ -8,7 +8,7 @@ include ../../../components/dates-block/dates-block
 include ../../../components/checkbox/checkbox
 include ../../../components/checkbox-list/checkbox-list
 include ../../../components/bullet-list/bullet-list
-include ../../../components/radio-button/radio-button
+include ../../../components/gender-pick/gender-pick
 include ../../../components/toggle-button/toggle-button
 include ../../../components/like-button/like-button
 include ../../../components/rate-button/rate-button
@@ -30,16 +30,13 @@ block main
         +input-container({label: 'Text field', tip: 'Default', for: 'uikit-text-default'})
           +text-field({type: 'email', id: 'uikit-text-default', placeholder: 'Email', name: 'uikit-email', rq: true, autocomplete: 'on'})
       .form-elements__el.form-elements__el--low-margin
-        +input-container({label: 'Text field', tip: 'Hover / Focus',  for: 'uikit-text-hovfocus'})
-          +text-field({type: 'text', id: 'uikit-text-hovfocus', name: 'uikit-focused-textfield', value: 'This is pretty awesome', focusedView: true, rq: true})
-      .form-elements__el.form-elements__el--low-margin
         +input-container({label: 'Dropdown', tip: 'Default', for: 'uikit-iqdropdown-guests'})
           +dropdown({id: 'uikit-iqdropdown-guests', name: 'uikit-dropdown-guests', dropdownType: 'guests'})
       .form-elements__el.form-elements__el--low-margin
         +input-container({label: 'Masked text field', tip: 'Default', for: 'uikit-text-masked'})
           +text-field({id: 'uikit-text-masked', name: 'uikit-masked-textfield', placeholder: 'ДД.ММ.ГГГГ', mask: 'birthday-mask'})
       .form-elements__el
-        +dates-block({uikitBlockLabels: 'Date dropdown', idBase: 'uikit-dates-block'})
+        +dates-block({uikitBlockLabels: true, idBase: 'uikit-dates-block'})
     .form-elements__column
       .form-elements__el.form-elements__el--narrow
         +checkbox-list({id: 'uikit-cb-btns', title: 'Checkbox buttons', items: [
@@ -47,19 +44,18 @@ block main
           {label: 'Можно с питомцами', name: 'uikit-cb-pets-allowed'},
           {label: 'Можно пригласить гостей <span class="nowrap">(до 10 человек)</span>', name: 'uikit-cb-guests-allowed'}]})
       .form-elements__el.form-elements__el--narrow
-        +uikit-elements-container({title: 'Radio buttons', gap: 'big'})
-          +radio-button({id: 'uikit-genderpick-male', label: 'Мужчина', name: 'uikit-genderpick', value: 'male'})
-          +radio-button({id: 'uikit-genderpick-female', label: 'Женщина', name: 'uikit-genderpick', value: 'female'})
+        +uikit-elements-container({title: 'Radio buttons'})
+          +gender-pick('uikit-genderpick')
       .form-elements__el.form-elements__el--narrow
         +uikit-elements-container({title:'Toggle'})
           +toggle-button({id: 'uikit-toggle-button', name: 'uikit-toggle-button', label: 'Получать спецпредложения'})
       .form-elements__el.form-elements__el--narrow
         +uikit-elements-container({title:'Like button', gap: 'small'})
-          +like-button(2)
-          +like-button(12)
+          +like-button(7)
+          +like-button(9)
       .form-elements__el.form-elements__el--narrow
         +uikit-elements-container({title:'Rate button & rating', gap: 'big'})
-          +rate-button({id: 'uikit-rate-button'})
+          +rate-button('uikit-rate-button')
           +star-rating(4)
     .form-elements__column
       .form-elements__el
@@ -67,7 +63,7 @@ block main
           +submit-button('Перейти к оплате')
           +link-button({text: 'Click me', linkTo: '#', theme: 'primary'})
           +link-button({text: 'Войти', linkTo: '#', theme: 'secondary'})
-          +link-button({text: 'Зарегистрироваться', linkTo: '#', theme: 'primary', navLink: true})
+          +link-button({text: 'Зарегистрироваться', linkTo: '#', theme: 'primary', headerButton: true})
       .form-elements__el
         +uikit-elements-container({title: 'Pagination'})
           +pagination()
@@ -95,15 +91,15 @@ block main
     .form-elements__column
       .form-elements__el.form-elements__el--narrow
         +checkbox-list({id: 'uikit-rich-cb-btns', title: 'Rich checkbox buttons', items: [
-          {label: 'Широкий коридор', name: 'uikit-cb-wide-corridor', desc: 'Ширина коридоров в номере <span class="nowrap">не менее 91 см.</span>'},
-          {label: 'Помощник для инвалидов', name: 'uikit-cb-invalid-helper',  desc: 'На 1 этаже вас встретит специалист <span class="nowrap">и проводит</span> до номера'}]})
+          {label: 'Широкий коридор', name: 'corridor', desc: 'Ширина коридоров в номере <span class="nowrap">не менее 91 см.</span>'},
+          {label: 'Помощник для инвалидов', name: 'helper',  desc: 'На 1 этаже вас встретит специалист <span class="nowrap">и проводит</span> до номера'}]})
       .form-elements__el.form-elements__el--narrow
         +uikit-elements-container({title: 'Bullet list'})
-          +bullet-list({items: ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, <span class="nowrap">а выезд</span> до 12:00']})
+          +bullet-list(['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, <span class="nowrap">а выезд</span> до 12:00'])
     .form-elements__column
       +features-list([
-        {icon: 'insert_emoticon', title: 'Комфорт', descr: 'Шумопоглощающие стены'},
-        {icon: 'location_city', title: 'Удобство', descr: 'Окно в каждой из спален'}
+        {icon: 'insert_emoticon', title: 'Комфорт', desc: 'Шумопоглощающие стены'},
+        {icon: 'location_city', title: 'Удобство', desc: 'Окно в каждой из спален'}
       ])
     .form-elements__column
-      +guest-review({avatar: require('../../../assets/img/murad-ava.png'), name: 'Мурад Сарафанов', date: '5 дней назад', likes: 12, text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. <span class="nowrap">И стены</span>, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'})
+      +guest-review({avatar: require('../../../assets/img/murad-ava.png'), guestName: 'Мурад Сарафанов', date: '5 дней назад', likes: 12, text: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. <span class="nowrap">И стены</span>, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'})
