@@ -1,4 +1,4 @@
-//- Using example: +link-button({text: 'Button text', linkTo: 'Link directs to', theme: 'primary/secondary'})
+//- Using example: +link-button({text: 'Button text', linkTo: 'Link directs to', theme: 'primary/secondary', headerButton: boolean(button for menu in header)})
 
 mixin link-button(params)
   - var baseClass = 'link-button'
@@ -10,7 +10,8 @@ mixin link-button(params)
     when 'secondary'
       - classes.push(baseClass + '--theme--secondary')
 
-  if params.narrow
-    - classes.push(baseClass + '--narrow')
+  if params.headerButton
+    - classes.push(baseClass + '--nav-button')
 
-  a(class=classes, href=params.linkTo)!= params.text
+  a(class=classes, href=params.linkTo)
+    span.link-button__text!=params.text
