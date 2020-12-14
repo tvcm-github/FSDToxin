@@ -11,7 +11,7 @@ mixin link-button(params)
       - classes.push(baseClass + '--theme--secondary')
 
   if params.headerButton
-    - classes.push(baseClass + '--nav-button')
+    - classes.push(baseClass + '--header')
 
   a(class=classes, href=params.linkTo)
     span.link-button__text!=params.text
