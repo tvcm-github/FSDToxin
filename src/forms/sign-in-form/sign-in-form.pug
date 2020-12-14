@@ -1,0 +1,23 @@
+extends ../../templates/form-card/form-card
+include ../../components/text-field/text-field
+include ../../components/input-container/input-container
+include ../../components/submit-button/submit-button
+include ../../components/link-button/link-button
+
+block variables
+  - var formTitle = 'Войти'
+  - var formName = 'sign-in-form'
+  - var formAction = 'URL'
+
+block main
+  .form-card__field
+    +text-field({type: 'email', id: 'sign-in-form__email', placeholder: 'Email', name: 'email', rq: true, autocomplete: true})
+  .form-card__field
+    +text-field({type: 'password', id: 'sign-in-form__password', placeholder: 'Пароль', name: 'password', rq: true})
+  .form-card__submit
+    +submit-button('Войти')
+  .form-card__footer
+    p.form-card__redirect-label Нет аккаунта на Toxin?
+    .form-card__redirect-button
+      +link-button({text: 'Создать', linkTo: 'javascript:void(0)', theme: 'secondary'})
+
