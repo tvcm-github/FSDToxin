@@ -1,0 +1,102 @@
+.room-booking-card {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__room {
+    font-weight: bold;
+    color: #1f2041;
+  }
+
+  &__nsymb {
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+  }
+
+  &__number {
+    font-size: 2.4rem;
+    line-height: 2.9rem;
+  }
+
+  &__type {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+    color: #bc9cff;
+  }
+
+  &__price {
+    align-self: flex-end;
+    line-height: 1.8rem;
+    color: rgba(31, 32, 65, 0.5);
+  }
+
+  &__value {
+    font-weight: bold;
+  }
+
+  &__period {
+    font-size: 1.2rem;
+  }
+
+  &__pricing {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__pricing-item {
+    display: flex;
+    margin-top: 1rem;
+  }
+
+  &__pricing-desc,
+  &__pricing-cost {
+    margin: 0;
+  }
+
+  &__pricing-desc {
+    max-width: 21.4rem;
+    margin-right: 0.5rem;
+  }
+
+  &__pricing-cost {
+    flex-grow: 1;
+    min-width: 7rem;
+    text-align: right;
+  }
+
+  &__pricing-info {
+    height: 2rem;
+    width: 2rem;
+    margin-left: 0;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    text-align: center;
+    flex-shrink: 0;
+    display: block;
+    color: rgba(31, 32, 65, 0.25);
+    border: 1px solid rgba(31, 32, 65, 0.25);
+    border-radius: 50%;
+  }
+
+  &__total {
+    display: flex;
+    font-size: 1.9rem;
+    line-height: 2.3rem;
+    font-weight: bold;
+    color: #1f2041;
+  }
+
+  &__total-dash {
+    flex-grow: 1;
+    align-self: flex-start;
+    margin-top: 1.7rem;
+    line-height: 1.5rem;
+    margin-left: 0.4rem;
+    margin-right: 0.5rem;
+    border-bottom: 1px dashed rgba(31, 32, 65, 0.25);
+  }
+}

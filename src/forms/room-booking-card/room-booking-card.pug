@@ -1,4 +1,8 @@
 extends ../../templates/form-card/form-card
+include ../../components/dates-block/dates-block
+include ../../components/input-container/input-container
+include ../../components/dropdown/dropdown
+include ../../components/submit-button/submit-button
 
 block variables
   - var formTitle = false;
@@ -6,3 +10,37 @@ block variables
   - var formAction = 'URL'
 
 block main
+  .room-booking-card
+    .room-booking-card__top
+      .room-booking-card__room
+        span.room-booking-card__nsymb №
+        span.room-booking-card__number 888
+        span.room-booking-card__type люкс
+      .room-booking-card__price
+        span.room-booking-card__value 9999₽&nbsp;
+        span.room-booking-card__period в сутки
+    .form-card__section
+      +dates-block({idBase: 'booking-card-dates'})
+    .form-card__section
+      +input-container({label:'Гости', for: 'booking-card-guests'})
+        +dropdown({dropdownType: 'guests', id: 'booking-card-guests', name: 'booking-card-guests'})
+    .form-card__section
+      ul.room-booking-card__pricing
+        li.room-booking-card__pricing-item
+          p.room-booking-card__pricing-desc 9 990₽ х 4 суток
+          p.room-booking-card__pricing-cost 39 960₽
+        li.room-booking-card__pricing-item
+          p.room-booking-card__pricing-desc Сбор за услуги: скидка&nbsp;
+            span.nowrap 2 179₽
+          span.room-booking-card__pricing-info i
+          p.room-booking-card__pricing-cost 0₽
+        li.room-booking-card__pricing-item
+          p.room-booking-card__pricing-desc Сбор за дополнительные услуги
+          span.room-booking-card__pricing-info i
+          p.room-booking-card__pricing-cost 300₽
+      p.room-booking-card__total
+        span.room-booking-card__total-desc Итого
+        span.room-booking-card__total-dash
+        span.room-booking-card__total-cost 38 081₽
+    .form-card__submit
+      +submit-button('Забронировать')

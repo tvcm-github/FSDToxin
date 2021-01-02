@@ -1,2 +1,5 @@
-
 import './room-booking-card.scss'
+import '../../components/dates-block/dates-block'
+import '../../components/dropdown/dropdown'
+import '../../components/input-container/input-container'
+import '../../components/submit-button/submit-button'
