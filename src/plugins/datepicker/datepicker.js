@@ -44,12 +44,12 @@ import './datepicker.css';
 
             multipleDates: false, // Boolean or Number
             multipleDatesSeparator: ',',
-            range: false,
+            range: true,
             twoInputsIdDiff: '',
 
             todayButton: false,
-            clearButton: false,
-            applyButton: false,
+            clearButton: true,
+            applyButton: true,
 
             showEvent: 'focus',
             autoClose: false,

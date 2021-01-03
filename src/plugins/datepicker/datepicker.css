@@ -215,7 +215,7 @@
     transition: opacity 0.3s ease, transform 0.3s ease, left 0s 0s, -webkit-transform 0.3s ease; }
 
 .datepicker-inline {
-  position: absolute;
+  max-width: 32rem;
   width: 100%;
   box-sizing: border-box;
 }
