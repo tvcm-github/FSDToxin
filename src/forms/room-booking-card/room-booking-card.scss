@@ -1,4 +1,6 @@
 .room-booking-card {
+  margin-top: 1rem;
+
   &__top {
     display: flex;
     justify-content: space-between;
@@ -28,7 +30,7 @@
 
   &__price {
     align-self: flex-end;
-    line-height: 1.8rem;
+    line-height: 2rem;
     color: rgba(31, 32, 65, 0.5);
   }
 
@@ -47,6 +49,11 @@
   }
 
   &__pricing-item {
+
+    &:last-child {
+      line-height: 1.8rem;
+    }
+
     display: flex;
     margin-top: 1rem;
   }
@@ -57,6 +64,7 @@
   }
 
   &__pricing-desc {
+
     max-width: 21.4rem;
     margin-right: 0.5rem;
   }
@@ -68,6 +76,7 @@
   }
 
   &__pricing-info {
+    box-sizing: border-box;
     height: 2rem;
     width: 2rem;
     margin-left: 0;
@@ -83,9 +92,11 @@
   }
 
   &__total {
+    margin: 0;
+    margin-top: 3rem;
     display: flex;
     font-size: 1.9rem;
-    line-height: 2.3rem;
+    line-height: 2.4rem;
     font-weight: bold;
     color: #1f2041;
   }
