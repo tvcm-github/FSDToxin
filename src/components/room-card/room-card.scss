@@ -1,0 +1,70 @@
+.room-card {
+  width: 27rem;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0px 1rem 2rem rgba(31, 32, 65, 0.05);
+
+  &__gallery {
+    height: 15rem;
+  }
+
+  &__body {
+    padding: 2rem;
+  }
+
+  &__title{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(31,32,65,.1);
+  }
+
+  &__room {
+    font-weight: bold;
+    color: #1f2041;
+  }
+
+  &__nsymb {
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+  }
+
+  &__number {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+
+  &__type {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+    color: #bc9cff;
+  }
+
+  &__price {
+    align-self: flex-end;
+    line-height: 2rem;
+    color: rgba(31, 32, 65, 0.5);
+  }
+
+  &__value {
+    font-weight: bold;
+  }
+
+  &__period {
+    font-size: 1.2rem;
+  }
+
+  &__reviews {
+    display: flex;
+    margin-top: 0.8rem;
+    justify-content: space-between;
+    color: rgba(31, 32, 65, 0.5);
+  }
+
+  &__reviews-number {
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,23 @@
+include ../star-rating/star-rating
+include ../carousel/carousel
+
+mixin room-card(params)
+  article.room-card
+    .room-card__gallery
+      +carousel(params.images)
+    .room-card__body
+      .room-card__title
+        .room-card__room
+          span.room-card__nsymb №&nbsp;
+          span.room-card__number!= params.roomNumber
+          if params.type
+            span.room-card__type!= params.type
+        .room-card__price
+          span.room-card__value!= params.price + '₽&nbsp;'
+          span.room-card__period в сутки
+      .room-card__reviews
+        .room-card__rating
+          +star-rating(params.rating)
+        .room-card__reviews-counter
+          span.room-card__reviews-number!= params.reviewsNumber
+          span &nbsp;Отзывов
