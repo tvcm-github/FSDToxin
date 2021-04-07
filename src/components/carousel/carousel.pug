@@ -1,0 +1,6 @@
+mixin carousel(images)
+  .carousel
+    .carousel__gallery
+      for image in images
+        img.carousel__image(src=image)
+
