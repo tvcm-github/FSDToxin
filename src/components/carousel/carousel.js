@@ -42,37 +42,20 @@ import './carousel.scss'
           nextIndex = (currentIndex + 1) % images.length
         }
 
-        if (left) {
-          images
-            .eq(nextIndex)
-            .css({
-              display: 'inline-block',
-              left: '100%'})
-            .animate({left : 0}, 300, function() { this.removeAttribute('style')})
-
-          activeImage.animate({right: '100%'}, 300, function() {
-            this.removeAttribute('style')
-            $(this).removeClass('carousel__image--active')
-          })
-
-        } else {
-          images
-            .eq(nextIndex)
-            .css({
-              display: 'inline-block',
-              right: '100%'})
-            .animate({right : 0}, 300, function() {this.removeAttribute('style')})
-
-          activeImage.animate({left: '100%'}, 300, function() {
-            this.removeAttribute('style')
-            $(this).removeClass('carousel__image--active')
-          })
-        }
-
-        dots.find('.carousel__dot--active').removeClass('carousel__dot--active')
         images
           .eq(nextIndex)
-          .addClass('carousel__image--active')
+          .addClass(`carousel__image--slide-from-${left ? 'left' : 'right'} carousel__image--active`)
+
+        activeImage
+          .addClass(`carousel__image--slide-${left ? 'left' : 'right'}`)
+          .removeClass('carousel__image--active')
+
+        activeImage.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+          activeImage.removeClass(`carousel__image--slide-${left ? 'left' : 'right'}`)
+          images.eq(nextIndex).removeClass(`carousel__image--slide-from-${left ? 'left' : 'right'}`)
+        })
+
+        dots.find('.carousel__dot--active').removeClass('carousel__dot--active')
         dots.children('.carousel__dot')
           .eq(nextIndex)
           .addClass('carousel__dot--active')
